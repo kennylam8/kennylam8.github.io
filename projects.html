@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kenny Lam</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<!--For local development-->
+<!--  <link href="css/bootstrap.min.css" rel="stylesheet">-->
+<!--  <script src="js/bootstrap.bundle.min.js"></script>-->
+</head>
+<style>
+  #top-nav {
+    font-weight: 400;
+    font-size: 15px;
+    font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+    line-height: 1.8;
+    color: #C9C9C9FF;
+  }
+</style>
+
+<body>
+<nav id="top-nav" class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="projects.html">Projects</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2 >Projects</h2>
+      <p>Click on the project to learn more about it</p>
+      <h4 class="mt-4">Current</h4>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link disabled" id='project1-2123nav' href="#" onclick ="project_click_handler('project1')">[Ongoing] Master's project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick ="project_click_handler(this, 'project_2')">Haplotypes</a>
+        </li>
+      </ul>
+
+
+      <h4 class="mt-4">Undergraduate</h4>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" id='project1-nav' href="#" onclick ="project_click_handler(this, 'project_ccnn_eeg')">CCNN_EEG</a>
+        </li>
+      </ul>
+    </div>
+
+<!--    TODO change this to a better comment to indicate this is the big div-->
+    <div id = "project-display" class="col-sm-8" style="display:block">
+
+      <div id = "project_ccnn_eeg" style="display:block">
+        <h2 id="casper-algorithm-pytorch-implementation">Alcoholic Subject Detection: Classification of EEG signals using CasPer Algorithm</h2>
+        <br/>
+        <p>In this project, a modified version of Casper network <a href="#project_ccnn_eeg_citation_1">[1]</a> were implemented, which is a modified Cascade
+          correlation network, to then compare the classification of both within-subject and cross-subject settings to previously published result. The NN was trained to perform classification for the UCI EEG dataset for alcoholism, which contains the EEG data of control subjects and
+          subjects that is diagnosed with alcoholism. The modified Casper network performs relatively well when it comes to within-subject
+          settings with mean accuracy of 88%, but failed to produce outstanding result in cross-subject settings, with mean
+          accuracy of 64.2%.</p>
+        <img src="imgs/ccnn_eeg_1.png" alt="" width=100%>
+        <p style="text-align:center">Figure 1: Topology of the modified CasPer Algorithm <a href="#project_ccnn_eeg_citation_1">[1]</a> after adding the second neuron </p>
+
+        <h5 id="disclaimer">Disclaimer</h5>
+        <p>This project was done as a University research project. Started as an individual semester long project, later continued the research project under the supervision of Mr. Yue Yao (ANU School of Computer Science), modifications were made to my original paper and submitted to conference.</p>
+
+        <h5 id="originality">Originality</h5>
+        <p>Method: modified CasPer [<a href="#project_ccnn_eeg_citation_1">1</a>]<br>
+          Dataset: UCI EEG Alcoholism dataset [<a href="#project_ccnn_eeg_citation_2">2</a>], two different preprocessed version of the dataset were used in the code, both preprocessed by Yao, Plested and Gedeon [<a href="#project_ccnn_eeg_citation_3">3</a>-<a href="#project_ccnn_eeg_citation_4">4</a>].</p>
+        <p>The Casper algorithm is implemented base on some sample code provided by Australian National University, algorithm/codes including normalization, plotting loss diagram and plotting error matrix and printing epoch/loss and accuracy are based on the University's course material. Some codes are provided UCI originally serve as an example for the classification of the glass dataset url: <a href="http://archive.ics.uci.edu/ml/datasets/Glass+Identification">http://archive.ics.uci.edu/ml/datasets/Glass+Identification</a></p>
+        <p>The implementation of the Autoencoder was directly copied from <a href="https://medium.com/pytorch/implementing-an-autoencoder-in-pytorch-19baa22647d1">Implementing an Autoencoder in PyTorch</a>, with minor changes.</p>
+        <h5 id="References">References</h5>
+        <p id="project_ccnn_eeg_citation_1">[1] N. K. Treadgold and T. D. Gedeon, "A cascade network algorithm employing progressive RPROP," in Biological and Artificial Computation: From Neuroscience to TechnologyAnonymous Berlin, Heidelberg: Springer Berlin Heidelberg, 2005, pp. 733-742. </p>
+        <p id="project_ccnn_eeg_citation_2">[2] EEG Database Data Set. UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California,
+          School of Information and Computer Science. [Online], Available: https://archive.ics.uci.edu/ml/datasets/eeg+database, October
+          13, 1999.</p>
+        <p id="project_ccnn_eeg_citation_3">[3] Y. Yao, J. Plested and T. Gedeon, "Deep feature learning and visualization for EEG recording using autoencoders," in Neural Information ProcessingAnonymous Cham: Springer International Publishing, 2018, pp. 554-566.</p>
+        <p id="project_ccnn_eeg_citation_4">[4] Y. Yao, J. Plested and T. Gedeon, "Information-preserving feature filter for short-term EEG signals," Neurocomputing (Amsterdam), vol. 408, pp. 91-99, 2020.</p>
+
+      </div>
+
+      <div id = "project_2" style="display:none">
+        <h2 id="heading_id">Project title</h2>
+        <br/>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<script>
+  function invisible(){
+    let div = document.getElementById("project-display");
+    let children = div.children;
+    for (let i = 0; i < children.length; i++) {
+      children[i].style.display = "none";
+    }
+  }
+
+  function project_click_handler(this_id, text_id) {
+    // make other div invisible
+    let div = document.getElementById("project-display");
+    let children = div.children;
+    for (let i = 0; i < children.length; i++) {
+      children[i].style.display = "none";
+    }
+
+    // make active nav element not active
+    let xy = document.getElementsByClassName("active");
+    let i;
+    for (i = 0; i < xy.length; i++) {
+      if (xy[i].parentElement.parentElement.parentElement.parentElement.id !== "top-nav-bar"){
+        xy[i].classList.remove("active"); // Remove active from the class in all top-nav-bar elements
+      }
+
+      document.getElementById(text_id).style.display='block';
+      this_id.classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>
