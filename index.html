@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <title>Kenny Lam</title>
+
+<!--TODO-->
+<!--    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">-->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS only -->
@@ -34,7 +38,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-image: url("imgs/index_bground.JPG");
-        height: 95%;
+        height: 100%;
 
     }
 
@@ -67,12 +71,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="projects.html">Projects</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link">Link</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false" data-bs-toggle="dropdown">Links</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="https://github.com/kennylam8" target="_blank">Github</a></li>
+                        <li><a class="dropdown-item" href="https://www.linkedin.com/in/kenny-lam8/" target="_blank">Linkedin</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">About</a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
                 </li>
@@ -83,8 +93,9 @@
 <div class="bgimg">
     <div role="main" class="cover-text">
         <h1 class="cover-heading">Kenny Lam</h1>
-        <a href="https://github.com/kennylam8"><img src="imgs/github_icon.png" alt="Github icon" style="width: 30px; min-width: 30px;"></a>
-        <a href="#"><img src="imgs/LI-In-Bug.png" alt="Github icon" style="width: 30px; min-width: 30px;"></a>
+        <p class="lead">Data Science and machine learning enthusiast</p>
+        <a href="https://github.com/kennylam8" target="_blank"><img src="imgs/github_icon.png" alt="Github icon" style="width: 30px; min-width: 30px;"></a>
+        <a href="https://www.linkedin.com/in/kenny-lam8/" target="_blank"><img src="imgs/LI-In-Bug.png" alt="Github icon" style="width: 30px; min-width: 30px;"></a>
         <br/><br/>
         <a href="projects.html" class="btn btn-dark">View my projects</a>
     </div>

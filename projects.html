@@ -33,12 +33,18 @@
       <li class="nav-item">
         <a class="nav-link" href="projects.html">Projects</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false" data-bs-toggle="dropdown">Links</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="https://github.com/kennylam8" target="_blank">Github</a></li>
+          <li><a class="dropdown-item" href="https://www.linkedin.com/in/kenny-lam8/" target="_blank">Linkedin</a></li>
+        </ul>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+
+      <!--                <li class="nav-item">-->
+      <!--                    <a class="nav-link" href="#">About</a>-->
+      <!--                </li>-->
       <li class="nav-item">
         <a class="nav-link" href="contact.html">Contact</a>
       </li>
@@ -46,7 +52,7 @@
   </div>
 </nav>
 
-<div class="container mt-5">
+<div class="container-xl mt-5">
   <div class="row">
     <div class="col-sm-4">
       <h2 >Projects</h2>
@@ -54,24 +60,25 @@
       <h4 class="mt-4">Current</h4>
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link disabled" id='project1-2123nav' href="#" onclick ="project_click_handler('project1')">[Ongoing] Master's project</a>
+          <a class="nav-link disabled" id='project2-nav' href="#" onclick ="project_click_handler('project1')">Predicting Small-Molecules properties using Deep Learning</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick ="project_click_handler(this, 'project_2')">Haplotypes</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#" onclick ="project_click_handler(this, 'project_2')">HP</a>-->
+<!--        </li>-->
       </ul>
 
 
-      <h4 class="mt-4">Undergraduate</h4>
+      <h4 class="mt-4">Completed</h4>
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link active" id='project1-nav' href="#" onclick ="project_click_handler(this, 'project_ccnn_eeg')">CCNN_EEG</a>
+          <a class="nav-link active" id='project1-nav' href="#" onclick ="project_click_handler(this, 'project_ccnn_eeg')">Differentiating Alcoholic individual's EEG data using CasPer neural network</a>
         </li>
       </ul>
     </div>
 
+
 <!--    TODO change this to a better comment to indicate this is the big div-->
-    <div id = "project-display" class="col-sm-8" style="display:block">
+    <div id = "project-display" class="col-md-8" style="display:block">
 
       <div id = "project_ccnn_eeg" style="display:block">
         <h2 id="casper-algorithm-pytorch-implementation">Alcoholic Subject Detection: Classification of EEG signals using CasPer Algorithm</h2>
@@ -81,24 +88,27 @@
           subjects that is diagnosed with alcoholism. The modified Casper network performs relatively well when it comes to within-subject
           settings with mean accuracy of 88%, but failed to produce outstanding result in cross-subject settings, with mean
           accuracy of 64.2%.</p>
-        <img src="imgs/ccnn_eeg_1.png" alt="" width=100%>
+        <img src="imgs/ccnn_eeg_1.png" alt="" width=90% style="display: block; margin-left: auto; margin-right: auto" >
         <p style="text-align:center">Figure 1: Topology of the modified CasPer Algorithm <a href="#project_ccnn_eeg_citation_1">[1]</a> after adding the second neuron </p>
 
-        <h5 id="disclaimer">Disclaimer</h5>
+        <h5 id="project_ccnn_eeg_disclaimer">Disclaimer</h5>
         <p>This project was done as a University research project. Started as an individual semester long project, later continued the research project under the supervision of Mr. Yue Yao (ANU School of Computer Science), modifications were made to my original paper and submitted to conference.</p>
 
-        <h5 id="originality">Originality</h5>
+        <h5 id="project_ccnn_eeg_originality">Originality</h5>
         <p>Method: modified CasPer [<a href="#project_ccnn_eeg_citation_1">1</a>]<br>
           Dataset: UCI EEG Alcoholism dataset [<a href="#project_ccnn_eeg_citation_2">2</a>], two different preprocessed version of the dataset were used in the code, both preprocessed by Yao, Plested and Gedeon [<a href="#project_ccnn_eeg_citation_3">3</a>-<a href="#project_ccnn_eeg_citation_4">4</a>].</p>
         <p>The Casper algorithm is implemented base on some sample code provided by Australian National University, algorithm/codes including normalization, plotting loss diagram and plotting error matrix and printing epoch/loss and accuracy are based on the University's course material. Some codes are provided UCI originally serve as an example for the classification of the glass dataset url: <a href="http://archive.ics.uci.edu/ml/datasets/Glass+Identification">http://archive.ics.uci.edu/ml/datasets/Glass+Identification</a></p>
-        <p>The implementation of the Autoencoder was directly copied from <a href="https://medium.com/pytorch/implementing-an-autoencoder-in-pytorch-19baa22647d1">Implementing an Autoencoder in PyTorch</a>, with minor changes.</p>
-        <h5 id="References">References</h5>
+        <p>The implementation of the Autoencoder was made following <a href="https://medium.com/pytorch/implementing-an-autoencoder-in-pytorch-19baa22647d1">Implementing an Autoencoder in PyTorch</a>, with minimal changes.</p>
+        <h5 id="project_ccnn_eeg_References">References</h5>
         <p id="project_ccnn_eeg_citation_1">[1] N. K. Treadgold and T. D. Gedeon, "A cascade network algorithm employing progressive RPROP," in Biological and Artificial Computation: From Neuroscience to TechnologyAnonymous Berlin, Heidelberg: Springer Berlin Heidelberg, 2005, pp. 733-742. </p>
         <p id="project_ccnn_eeg_citation_2">[2] EEG Database Data Set. UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California,
           School of Information and Computer Science. [Online], Available: https://archive.ics.uci.edu/ml/datasets/eeg+database, October
           13, 1999.</p>
         <p id="project_ccnn_eeg_citation_3">[3] Y. Yao, J. Plested and T. Gedeon, "Deep feature learning and visualization for EEG recording using autoencoders," in Neural Information ProcessingAnonymous Cham: Springer International Publishing, 2018, pp. 554-566.</p>
         <p id="project_ccnn_eeg_citation_4">[4] Y. Yao, J. Plested and T. Gedeon, "Information-preserving feature filter for short-term EEG signals," Neurocomputing (Amsterdam), vol. 408, pp. 91-99, 2020.</p>
+
+        <h5 id="project_ccnn_eeg_code">Code</h5>
+        <p>  <a href="https://github.com/kennylam8/CCNN-EEG"> https://github.com/kennylam8/CCNN-EEG </a> </p>
 
       </div>
 
