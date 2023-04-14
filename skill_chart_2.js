@@ -77,7 +77,7 @@
                 axisLine: { show: false },
                 // type: 'value'
             },
-            animationDurationUpdate: 1000,
+            animationDurationUpdate: 500,
             series: [
                 {
                     id: 'bar1',
@@ -87,7 +87,7 @@
                     emphasis: {
                         focus: 'series'
                     },
-                    showBackground: true,
+                    showBackground: false,
                     symbolRepeat: true,
                     symbolSize: ['80%', '75%'],
                     barCategoryGap: '40%',

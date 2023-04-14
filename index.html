@@ -250,7 +250,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         }
     }
     .section{
-        height: 100%;
+        height: 100vh;
         padding-left: 0;
         /*position: relative;*/
         /*overflow: auto;*/
@@ -315,6 +315,9 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                         <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#projects" class="nav-link">Projects</a>
                     </li>
                     <li class="nav-item">
@@ -340,7 +343,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     <div id="about" class="b-example-divider" style="--bs-gutter-x: 0 rem;"></div>
 
     <div class="container-fluid">
-        <div class="section py-5 my-5 text-left container" style="padding: 0">
+        <div class="section py-5 my-5 container" style="padding: 0">
             <div class="row">
                 <div class="col col-lg-6">
                     <h1 class="display-5 fw-bold">About me</h1>
@@ -391,14 +394,14 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     </div>
 
     <!--  skills  -->
-    <div id="skills" class="container-fluid bg-dark">
+    <div id="skills" class="container-fluid bg-dark" style="height: 100vh">
         <div class="b-example-divider"></div>
 
 
         <div class="section py-0 my-5 text-left container" style="padding: 0">
             <div class="row">
                 <div class="col col-lg-12">
-                    <h1 class="display-5 fw-bold" style="color: white">Skills</h1>
+                    <h1 class="display-5 fw-bold" style="color: white">Skills (Hover to see details)</h1>
                     <br/>
                     <p class="lead" style="color: white">Programming Languages</p>
                     <div id="mainchart" class="section" style="width: 90%;height:250px;"></div>
@@ -409,16 +412,81 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
             <div class="row">
 
                 <div class="text-center">
-                    <a href="#projects"><i class="fa-solid fa-angles-down" style="color: white;text-align: center;"></i></a>
+                    <a href="#experience"><i class="fa-solid fa-angles-down" style="color: white;text-align: center;"></i></a>
                 </div>
             </div>
-                <br/><br/><br/><br/>
+                </div>
             </div>
-
         </div>
     </div>
 
+
+    <div id="experience" class="section container-fluid bg-light" style="height: 100vh;">
+
+    <div class="container flex-grow-1 bg-light" style="padding-top:3%">
+        <br/>
+            <div class="row">
+                <h1 class="display-5 py-3 fw-bold">Experience - Data Scientist - Bega Cheese</h1>
+                <br/><br/><br/><br/>
+                <div class="col col-lg-5">
+                    <img class="card" alt="Image of me" src="imgs/bega.JPG" style="width:100%; height:auto">
+<!--                    <p>(Koroit, Victoria - This photo was taken by my supervisor!)</p>-->
+                </div>
+                <div class="col-lg-7" style="">
+                    <p class=" mb-4 lead">
+                        I am currently interning as a Data Scientist at Bega Cheese, under the Bega Bionutrients business unit.
+                        </br>
+                        </br>
+                        During my internship, I reviewed the lactoferrin production process and identified different types of process and product quality data that could be used to optimize the production process. I developed data processing and engineering pipelines to process the data, as well as using different statistical techniques such as hypotheses testing while controlling for multiple variables, and analysing different trends in data to obtain insight.
+                        </br>
+                        </br>
+                        Apart from my data analysis work, I conducted on-site visits to the manufacturing facility to gain a thorough understanding of the workflow and work closely with site operators, data engineers, and technical engineers.
+                        <br/>
+
+                    </p>
+<!--                    I also collaborated and exchanged ideas with an interdisciplinary research group, which included experts from the ARC Dairy Innovation Hub and the Victorian-Government-funded “Faster, Smarter Pharma and Food Manufacturing” project team.-->
+<!--                    </br>-->
+                </div>
+
+            </div>
+            <div class="row " style="padding-bottom: 0">
+                <div class="col-lg-9" style="padding-bottom: 0">
+                    <p class="lead" style="padding-bottom: 0">
+                        I was very fortunate to work with a team of supportive
+                        and knowledgeable professionals who not only helped me grow as an individual, but also gave me a
+                        chance to contribute to meaningful projects that had a real impact on the company's success.
+                        Overall, my internship experience allowed me to gain valuable technical skills in Python programming, data analysis, and statistical techniques, as well as soft skills such as collaboration, communication, and adaptability.
+                        <br/><br/>
+                        I also collaborated and exchanged ideas with an amazing interdisciplinary research group at Bio21,
+                        which included dairy experts from the ARC Dairy Innovation Hub
+                        and data science experts from the Victorian-Government-funded “Faster, Smarter Pharma and Food Manufacturing” project team.
+                    </p>
+
+                </div>
+
+                <div class="col-lg-3" style="">
+                    <img class="card justify-content-end" src="imgs/IMG_2227.JPG" style="width:350px; height:350px">
+                </div>
+
+            </div>
+
+        <div class="text-center">
+            <a href="#skills"><i class="fa-solid fa-angles-down" style="text-align: center;"></i></a>
+        </div>
+
+
+
+<!--            <div class="text-center">-->
+<!--            </div>-->
+<!--            <div class="row ">-->
+<!--                wda-->
+<!--            </div>-->
+        </div>
+
     </div>
+
+
+
 <!--    <div class="row">-->
 <!--        <div class="col-2">-->
 <!--            <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">-->
@@ -483,8 +551,8 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 <!--        </div>-->
 <!--    </div>-->
 
-    <div id="projects" class="b-example-divider"></div>
-    <div  class="section ">
+<!--    <div id="projects" class="b-example-divider"></div>-->
+    <div  id="projects" class="section ">
         <div class="container-xl mt-5">
             <div class="row">
 
@@ -622,7 +690,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                             },
                         },
 
-                        animationDurationUpdate: 1000,
+                        animationDurationUpdate: 500,
                         series: [
                             {
                                 id: 'bar1',
@@ -632,7 +700,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                                 emphasis: {
                                     focus: 'series'
                                 },
-                                showBackground: true,
+                                showBackground: false,
                                 symbolRepeat: true,
                                 symbolSize: ['100%', '100%'],
                                 barCategoryGap: '40%',
