@@ -286,7 +286,42 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 
 
 </style>
+<style>
+    #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #loading-spinner {
+        border: 5px solid #cccccc;
+        border-top-color: #343a40;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    #home {
+        display: none;
+    }
+</style>
+
 <body onload="return myScript()" onhashchange="loadHashAnimation()">
+<!--    <div id="loading">-->
+<!--        <div id="loading-bar" class="align-content-center justify-content-center">-->
+<!--            <div class="align-content-center justify-content-center" id="loading-spinner"></div>-->
+<!--        </div>-->
+<!--    </div>-->
     <nav class="navbar bg-dark navbar-expand-sm bg-body-tertiary sticky-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -294,11 +329,11 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto ms-auto">
-                    <li class="nav-item">
-                            <a class="nav-link popup" onclick="myFunction()"  href="#"><i class="fa-solid fa-envelope" style="color: white;font-size:35px"></i>
-                                <span class="popuptext" id="myPopup">Copied</span>
-                            </a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                            <a class="nav-link popup" onclick="myFunction()"  href="#"><i class="fa-solid fa-envelope" style="color: white;font-size:35px"></i>-->
+<!--                                <span class="popuptext" id="myPopup">Copied</span>-->
+<!--                            </a>-->
+<!--                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/kennylam8" target="_blank"><i class="fa-brands fa-github" style="color: white;font-size:35px"></i></a>
                     </li>
@@ -316,11 +351,21 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                     <li class="nav-item">
                         <a class="nav-link" href="#skills">Skills</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">Experience</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Experience
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#experience">Data Scientist - Bega Cheese</a></li>
+                            <li><a class="dropdown-item" href="#experience2">Research Assistant - Biosig Lab</a></li>
+                            <li><a class="dropdown-item disabled" href="#">(To Be updated) Student Consultant - UoM Grand Challenges</a></li>
+                        </ul>
                     </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a href="#projects" class="nav-link">Projects</a>-->
+<!--                    </li>-->
                     <li class="nav-item">
-                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item">
 <!--                        <a class="nav-link">Contact me</a>-->
@@ -330,7 +375,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         </div>
     </nav>
 
-    <div class="bgimg" id="home">
+    <div class="bgimg" id="home2">
         <div role="main" class="cover-text">
             <h1 class="cover-heading">Kenny Lam</h1>
             <p class="lead">Data Science | Bioinformatics | Machine Learning</p>
@@ -437,7 +482,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     </div>
 
 
-    <div id="experience" class="container-fluid bg-light" style="height: 100vh;">
+    <div id="experience" class="container-fluid bg-light" style="min-height: 100vh">
 
     <div class="container flex-grow-1 bg-light section" style="padding-top:3%">
         <br/>
@@ -453,7 +498,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                         I am currently interning as a Data Scientist at Bega Cheese, under the Bega Bionutrients business unit.
                         </br>
                         </br>
-                        During my internship, I reviewed the lactoferrin production process and identified different types of process and product quality data that could be used to optimize the production process. I developed data processing and engineering pipelines to process the data, as well as using different statistical techniques such as hypotheses testing while controlling for multiple variables, and analysing different trends in data to obtain insight.
+                        During the internship, I reviewed the lactoferrin production process and identified different types of process and product quality data that could be used to optimize the production process. I developed data processing and engineering pipelines to process the data, as well as using different statistical techniques such as hypotheses testing while controlling for multiple variables, and analysing different trends in data to obtain insight.
                         </br>
                         </br>
                         Apart from my data analysis work, I conducted on-site visits to the manufacturing facility to gain a thorough understanding of the workflow and work closely with site operators, data engineers, and technical engineers.
@@ -494,6 +539,69 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         </div>
 
     </div>
+
+    <!--  Experience2 - Biosig lab  -->
+    <div id="experience2" class="container-fluid bg-white">
+
+        <div class="container flex-grow-1 bg-white section" style="padding-top:3%">
+            <br/>
+            <div class="row">
+                <h1 class="display-5 py-3 fw-bold">Experience - Research Assistant - Biosig Lab</h1>
+                <br/><br/><br/><br/>
+                <div class="col col-lg-5">
+                    <img class="card" alt="Image of me" src="imgs/biosig-pkcsm2.png" style="width:100%; height:auto">
+                    <!--                    <p>(Koroit, Victoria - This photo was taken by my supervisor!)</p>-->
+                </div>
+                <div class="col-lg-7" style="">
+                    <p class=" mb-4 lead">
+                        I am currently doing my research project and also working on other projects under the supervision of Associate Professor Douglas Pires at the Biosig lab
+                        (The Biosig lab is affiliated with The Baker Heart and Diabetes Institute, Bio 21 Institute of the University of Melbourne, and the University of Queensland).
+                        This research group is a 20+ people research group with two research group leaders
+                        </br>
+                        </br>
+                            I am currently working on a data science / pharmaceutical project where I develop
+                            an AI model to predict the pharmacokinetic properties (Absorption; Distribution; Metabolism; Excretion) of drugs.
+                            This project involves building web-servers using Flask, and developing machine learning model using PyTorch and PyTorch-Geometric.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p class="mb-4 lead">
+                    Outside my own research project, I am also involved in the lab's research projects, where I
+                    performed statistical analysis, post-hoc feature analysis, and integrating machine learning
+                    models into web-servers.
+                    <br/><br/>
+                    This research group is a 24 people research group with two research group leaders, I was also lucky
+                    to met different Postdocs and PhD students that were conducting similar or completely different research topics.
+                    One big advantage of working in this research group is our diverse technical backgrounds, including
+                    pharmacology, biology, computer science, and bioinformatics. This diversifies our ideas and facilitates
+                    collaboration within the research group.
+                    <br/><br/>
+                    Through my experiences working in a research group, I have had the opportunity to develop a diverse set of technical and soft skills that will be valuable in my future career. Specifically, I have gained expertise in statistical analysis, post-hoc feature analysis, and integrating machine learning models into web-servers. Collaborating with colleagues with backgrounds in pharmacology, biology, computer science, and bioinformatics has broadened my perspectives and exposed me to new approaches to problem-solving.
+                    <br/><br/>
+                    In addition to technical skills, being part of a research group has allowed me to develop many soft skills such as general and technical communication, teamwork, and time management. I have learned to effectively communicate my findings and work to a broad audience, collaborate with others on complex projects, and manage my time effectively to meet project deadlines.
+                    <br/><br/>
+                    Overall, the experience of working in this research group has been instrumental in my growth as a researcher and data scientist, and I am excited to continue building on the skills and experiences gained through this work.
+                </p>
+            </div>
+
+            <div class="text-center">
+                <a href="#contact"><i class="fa-solid fa-angles-down" style="text-align: center;"></i></a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- // Contact Page  //-->
+    <div id="contact" class="container-fluid bg-light" style="min-height: 100vh; text-align: center;">
+        <br/>
+        <div class="container bg-light justify-content-center align-content-center" style="text-align: center; padding-top:3%;">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfhxyGzB83bFhmXh9_oUn5sPFOpXCfQusQMaWY-BCARRgsUnQ/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+    </div>
+
 
     <script>
         function loadHashAnimation(){
@@ -670,6 +778,18 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         myChart.setOption(option);
     </script>
     <script>
+
+        window.addEventListener('load', function() {
+            var loadingSpinner = document.getElementById('loading-spinner');
+            var loadingContainer = document.getElementById('loading');
+            var contentContainer = document.getElementById('home');
+
+            setTimeout(function() {
+                loadingContainer.style.display = 'none';
+                contentContainer.style.display = 'block';
+            }, 2000);
+        });
+
         function myScript() {
             // myFunction();
             location.hash = ""
@@ -688,7 +808,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 
         function myFunction() {
             // Copy the text inside the text field
-            navigator.clipboard.writeText("kenny@kennylam8.com");
+            navigator.clipboard.writeText("");
 
             // Alert the copied text
             // alert("Copied the email to the clipboard");
