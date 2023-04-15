@@ -233,6 +233,12 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         }
     }
 
+    @media (min-width: 580px) {
+        .navbar {
+            height: 60px;
+        }
+    }
+
     .overflow-hidden { overflow: hidden; }
 </style>
 <style>
@@ -278,24 +284,20 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     }
 
 
+
 </style>
 <body onload="return myScript()" onhashchange="loadHashAnimation()">
-    <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary sticky-top" style="height:60px">
+    <nav class="navbar bg-dark navbar-expand-sm bg-body-tertiary sticky-top">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto ms-auto">
-                    <li class="nav-item ">
-<!--                        <i class="fa-solid fa-envelope popup" style="color: white;font-size:50px" onclick="myFunction()"></i>-->
-<!--                        <span class="popuptext" id="myPopup">A Simple Popup!</span>-->
-<!--                        <div class="popup" onclick="myFunction()"><i class="fa-solid fa-envelope popup" style="color: white;font-size:50px"></i>-->
+                    <li class="nav-item">
                             <a class="nav-link popup" onclick="myFunction()"  href="#"><i class="fa-solid fa-envelope" style="color: white;font-size:35px"></i>
-
-                            <span class="popuptext" id="myPopup">Email copied to your clipboard</span>
+                                <span class="popuptext" id="myPopup">Copied</span>
                             </a>
-<!--                        </div>-->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/kennylam8" target="_blank"><i class="fa-brands fa-github" style="color: white;font-size:35px"></i></a>
@@ -686,11 +688,10 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
             // alert("Copied the email to the clipboard");
             var popup = document.getElementById("myPopup");
             popup.classList.toggle("show");
-            const myTimeout = setTimeout(myGreeting, 3000)
-
+            const myTimeout = setTimeout(myGreeting, 1000)
         }
 
-        $('body').scrollspy({ target: '#navbar-example' })
+        $('body').scrollspy({ target: '#navbar-example'})
     </script>
     <script src="skill_chart_2.js"></script>
     <script>
