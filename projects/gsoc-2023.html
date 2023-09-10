@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Kenny Lam</title>
-
-    <!--TODO-->
-    <!--    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">-->
-
+    <title>Kenny Lam - GSoC 2023</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS only -->
@@ -69,12 +65,6 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     }
 
 
-    h3 {
-        letter-spacing: 5px;
-        text-transform: uppercase;
-        font: 20px "Lato", sans-serif;
-        color: #000000;
-    }
 
     /* Popup container - can be anything you want */
     .popup {
@@ -235,82 +225,15 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     }
 
     .overflow-hidden { overflow: hidden; }
-</style>
-<style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+
+    th, td {
+        padding: 5px;
     }
 
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-        }
-    }
-    .section{
-        height: 100%;
-        padding-left: 0;
-        /*position: relative;*/
-        /*overflow: auto;*/
-        /*scroll-behavior: smooth;*/
-        /*border-width: 1px 0;*/
-    }
-
-
-
-    .b-example-divider {
-        height: 3rem;
-        /*background-color: rgba(0, 0, 0);*/
-        width: 100%;
-    }
-
-    .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-    }
-
-    .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-    }
-
-
-
-</style>
-<style>
-    #loading {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #ffffff;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #loading-spinner {
-        border: 5px solid #cccccc;
-        border-top-color: #343a40;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    #home {
-        display: none;
+    table, th, td {
+        border: 1px solid black;
     }
 </style>
-
 <body>
 
 <nav class="navbar bg-dark navbar-expand-sm bg-body-tertiary sticky-top">
@@ -349,248 +272,383 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 </nav>
 
 
-<script>
-    function loadHashAnimation(){
 
+<div class="container">
+    <br/>
+    <h1 id="google-summer-of-code-2023-br-differentiating-real-and-misaligned-introns-with-machine-learning">Google Summer of Code 2023: <br/> Differentiating Real and Misaligned Introns with Machine Learning</h1>
+    <p><img src="https://img.shields.io/badge/licence-MIT-blue" alt="licence of this project is MIT">
+        <img src="https://img.shields.io/badge/Python-3.10-orange" alt="Built using Python 3.10"></p>
+    <h2 id="work-done">Work done</h2>
+    <p>Work done during the project could be found in <a href="https://github.com/kennylam8/IntronOrNot">https://github.com/kennylam8/IntronOrNot</a><br/>
+        This page is a conversion of the README.md file displayed at the link above, it is best viewed in the original format at Github</a></p>
+
+    <h2 id="organisation">Organisation</h2>
+    <p>Genome Assembly and Annotation (European Bioinformatics Institute / EMBL-EBI)</p>
+    <h2 id="research-group">Research Group</h2>
+    <p>Ensembl - <a href="https://www.ebi.ac.uk/about/teams/genome-interpretation/">Genome Interpretation Teams</a></p>
+    <h2 id="mentors">Mentors</h2>
+    <p><a href="https://www.ebi.ac.uk/people/person/jose-manuel-gonzalez-martinez/">Jose Gonzalez</a><br/>
+        <a href="https://www.ebi.ac.uk/people/person/jonathan-mudge/">Jonathan Mudge</a><br/>
+        <a href="https://www.ebi.ac.uk/people/person/adam-frankish/">Adam Frankish</a></p>
+    <h1 id="graphical-abstract">Graphical Abstract</h1>
+    <img style="max-width: 100%; height: auto;" src="gsoc-2023-imgs/ga.png"/>
+
+<!--    <div id="table-of-contents">-->
+<!--        <h2>Table of Contents</h2>-->
+<!--        <ul>-->
+<!--            <li><a href="#getting-started">Getting Started</a></li>-->
+<!--            <li><a href="#section2">Section 2</a></li>-->
+<!--            <li><a href="#section3">Section 3</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <h1 id="getting-started">Getting Started</h1>
+    <h3 id="installation">Installation</h3>
+    <ul>
+        <li>Download the latest zipped script in <code>Releases</code></li>
+        <li>Install the required dependencies detailed below</li>
+    </ul>
+    <h3 id="environment">Environment</h3>
+    <ul>
+        <li>32 GB of RAM or more is required for a large .bed file</li>
+        <li>Multi-thread support is default to enabled with the Pandarallel library</li>
+    </ul>
+    <h3 id="package-requirements">Package Requirements</h3>
+    <p><strong>Please Note that this requirement is for the ION script in <code>Releases</code>, not the notebooks</strong>\
+        <br/>
+        biopython==1.81\
+        matplotlib==3.5.2\
+        numpy==1.25.0\
+        pandarallel==1.6.5\
+        pandas==2.0.3\
+        pyBigWig==0.3.22\
+        pyfaidx==0.7.2.1\
+        scikit_learn==1.1.1\
+        shap==0.41.0\
+        tqdm==4.64.0\
+        xgboost==1.6.2</p>
+    <h2 id="usage">Usage</h2>
+    <p>Coordinate mode (1-based):</p>
+    <div class="card card-body bg-light">
+        <code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --shap false --<span class="hljs-built_in">type</span> coords chr12 <span class="hljs-number">126729967</span> <span class="hljs-number">126732342</span> -
+    </code>
+    </div><br/>
+
+    <p>BED mode:</p>
+    <div class="card card-body bg-light">
+        <code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed</code>
+    </div><br/>
+
+
+
+    <p>GTF mode:</p>
+    <div class="card card-body bg-light">
+        <code>TBA</code>
+<!--        <code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> &#45;&#45;<span class="hljs-keyword">mode</span> standard &#45;&#45;<span class="hljs-built_in">type</span> bed &#45;&#45;<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed</code>-->
+    </div><br/>
+
+    </code></pre><p>IMPORTANT: ION can only evaluate intorns with canonical splice-site (GT:AG, GC:AG, AT:AC)</p>
+    <h1 id="background">Background</h1>
+    <p>Understanding the impact of genetic variation on disease requires comprehensive gene annotation.
+        Human genes are well characterised following more than two decades of work on their annotation, however,
+        we know that this annotation is not complete and that new experimental methods are generating data
+        to help us towards the goal of complete gene annotation.</p>
+    <p>The advancement in the accuracy of long-read sequencing technology has allowed us to explore novel transcript variants of known genes.
+        Preventing potentially wrong transcripts and gene annotation is essential to the science community as many rely on the annotation for decision-making.
+        Automated workflow with a has been developed to minimise the time needed to verify and annotated those transcript variants. However,
+        current workflows are developed using a very strict rule-set and hence many of the novel transcript variants were rejected.
+        This project aims to address this issue by using machine learning to differentiate good quality but rejected transcripts,
+        using it as a standalone classification filter or analysing the decision-making methods of the model and consequently
+        improving the rule-set used in the automated workflow.</p>
+    <p>You can read more about the background of this project at: <a href="https://github.com/jmgonzmart/GSoC_ML_gene_annot">https://github.com/jmgonzmart/GSoC_ML_gene_annot</a></p>
+    <h2 id="project-goal">Project Goal</h2>
+    <p>This project consists of the following deliverables and goals:</p>
+    <ul>
+        <li>Install/prepare the environment and repository for the project.</li>
+        <li>Extract the GENCODE annotation data and featurize them into tabular format.</li>
+        <li>Explore the addition of other features that might facilitate decision-making or machine learning
+            model.</li>
+        <li>Learn to generate an extended set of low-quality transcript or splice junction predictions.</li>
+        <li>Develop a machine learning model that differentiate misaligned and real introns. The model should have low false positive rate.</li>
+        <li>Perform and document the statistical analysis of the model to extract its most relevant features for
+            decision-making.</li>
+        <li>Run the final model on novel transcripts and produce a detailed report of the results.</li>
+    </ul>
+    <h1 id="training-set-preparation">Training Set Preparation</h1>
+    <h2 id="positive-class-data">Positive Class Data</h2>
+    <p>Relevant Notebook: <a href="01_extract_introns_from_gencode.ipynb">01</a></p>
+    <p>We used the GENCODE v44 (<a href="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/">https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/</a>) as our positive set. We
+        used a script to extract all the introns out of the .gtf file.</p>
+    <h2 id="negative-class-data">Negative Class Data</h2>
+    <p>Relevant Notebook: <a href="02_extract_negative_introns.ipynb">02</a>, <a href="03_generating_false_introns.ipynb">03</a>, <a href="04_combining_positive_and_negative_train_set.ipynb">04</a></p>
+    <p>We used two source for generating negative class data.</p>
+    <ul>
+        <li><p>We have access to a previously gene annotators&#39; manually reviewed data, the dataset contains ~11000 introns, after removing introns that are already accepted in current version, 403 negative introns were obtained.</p>
+        </li>
+        <li><p>To simulate how false intron data could be presented in real data, we ultilized <a href="https://academic.oup.com/nargab/article/4/4/lqac092/6855700">PBSIM3</a> (Ono et al., 2022), a simulator for long-read sequencers that
+            is capable to simulate both PacBio RS II continuous long reads (CLR) and Oxford Nanopore Technology (ONT) reads. We simulated the reads using GENCODE v44 <code>Long non-coding RNA transcript sequences</code> and <code>Protein-coding transcript sequences</code> RNA data. We simulated them using four different settings:</p>
+            <ul>
+                <li>ONT single pass - protein coding genes</li>
+                <li>ONT multi-pass - protein coding genes</li>
+                <li>PacBio Iso-seq - protein coding genes</li>
+                <li>ONT single pass - lcnRNA</li>
+            </ul>
+        </li>
+    </ul>
+    <p>The reads were then aligned to the human genome respectively using <a href="https://doi.org/10.1093/bioinformatics/bty191">Minimap2</a> (Li, 2018), and intronic regions of all alignments were then extracted and
+        compared against the current GENCODE annotation and those that were not in the current GENCODE annotation is treated as false/misaligned introns.
+        About 110,000 false introns were obtained.</p>
+    <h1 id="feature-engineering">Feature Engineering</h1>
+    <h2 id="features-tested">Features Tested</h2>
+    <p>9 categories of features were generated:</p>
+    <ul>
+        <li>Recount3 score: <a href="05_trainset_recount3_feature.tsv">Notebook 05</a><ul>
+            <li>Based on the data extracted from the intronic region of <code>recount3: summaries and queries for large-scale RNA-seq expression and splicing</code> (Wilks et al.)</li>
+        </ul>
+        </li>
+        <li>Repeat region: <a href="06_trainset_repeat_feature.tsv">Notebook 06</a><ul>
+            <li>Check if any of the splice-sites lies in repeating regions.</li>
+        </ul>
+        </li>
+        <li>Antisense Exon: <a href="07_trainset_antisense_feature.tsv">Notebook 07</a></li>
+        <li>Distance of next nearest existing splice-site: <a href="09_trainset_nearest_alt_ss_dist_feature">Notebook 09</a><ul>
+            <li>Check the coordinate of both the donor and acceptor splice-site against current annotation (GENCODE v44) and calculate the distance between the splice site and the closest annotated splice-site nearby (excluding exact match).</li>
+        </ul>
+        </li>
+        <li>MaxEntScan score: <a href="10_trainset_MaxEntScan_feature.tsv">Notebook 10</a><ul>
+            <li>Based on the script/methodology developed by Yeo and Burge - <code>Maximum entropy modeling of short sequence motifs with applications to RNA splicing signals</code></li>
+        </ul>
+        </li>
+        <li>Basic sequence based feature: <a href="11_trainset_basic_features.tsv">Notebook 11</a><ul>
+            <li>Calculates the GC content.</li>
+            <li>Determines whether the sequence can be considered a CpG island based on the ratio of CpG dinucleotides and the GC content in the sequence.</li>
+            <li>Calculates the intron length.</li>
+        </ul>
+        </li>
+        <li>Conservation scores: <a href="12_trainset_conservation_scores_feature.tsv">Notebook 12</a><ul>
+            <li>Calculate the splice-site conservation scores with the <a href="https://doi.org/10.1101/gr.3715005">PhastCon</a> and <a href="https://doi.org/10.1101%2Fgr.097857.109">PhyloP</a> conservation resources downloaded from the <a href="https://doi.org/10.1093%2Fbib%2Fbbs038">UCSC genome browser</a>.</li>
+        </ul>
+        </li>
+        <li>Splice-site with better Recount3 score nearby: <a href="13_recount3_near_ss_with_better_score_feature.tsv">Notebook 13</a><ul>
+            <li>We look at 5nt further at both direction of the splice-site and see if there is a splice-site recorded in recount3 that has a better score</li>
+        </ul>
+        </li>
+        <li>Branch Point Prediction (BPP) score: <a href="14_trainset_BPP_score_feature.tsv">Notebook 14</a><ul>
+            <li>Branch point prediction using <a href="https://doi.org/10.1093/bioinformatics/btx401">BPP</a> (Zhang el al.)</li>
+        </ul>
+        </li>
+    </ul>
+    <h2 id="feature-selection">Feature Selection</h2>
+    <p>Relevant Notebook: <a href="17_feature_selection.ipynb">17</a></p>
+    <p>To make the model easier to interpret, and improve its performance. We simplify the model using feature selection.</p>
+    <p>We intentionally drop some features that we learned from empirical knowledge from the annotators are unimportant, namely the strand and chromosome of the introns.</p>
+    <p>We performed feature selection using RFECV:
+        Recursive Feature Elimination with Cross-Validation (RFECV) is a feature selection technique that aims to identify
+        a subset of features that are most useful for making accurate predictions. It is an extension of Recursive Feature
+        Elimination (RFE), which eliminates feature one by one according to their validation performance, RFECV incorporates
+        cross-validation (5-fold were chosen) for evaluation.</p>
+    <p>We also dropped the <code>sc</code> feature which is generated by the BPP script, as it has relatively less importance (reflected by the RFECV result) and not easily interpretable, and also introns lesser than certain length could not obtain the <code>sc</code> feature, we decided to remove it. </p>
+    <p>24 features were chosen. Refer to the second last cell of <a href="17_feature_selection.ipynb">Notebook 17</a> for more details.</p>
+    <h1 id="machine-learning-model">Machine Learning Model</h1>
+    <h2 id="model-architecture">Model Architecture</h2>
+    <p>We have tested different model architecture including Explainable Boosting Machine (EBM), RandomForest (RF), and more. We
+        chose XGBoost as the model for this task for its good performance in internal validation.</p>
+    <h2 id="hyperparameter-optimisation">Hyperparameter Optimisation</h2>
+    <p>Relevant Notebook: <a href="18_hyperparameter_optimisation.ipynb">18</a></p>
+    <p>We chose the hyperparameter the XGBoost model using exhaustive grid searching with 3-fold cross-validation of the following parameter:</p>
+    <pre><code>parameter_grid = {
+        <span class="hljs-string">'n_estimators'</span>: [<span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">150</span>, <span class="hljs-number">200</span>],
+        <span class="hljs-string">'learning_rate'</span>: [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>],
+        <span class="hljs-string">'max_depth'</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>],
+        <span class="hljs-string">'min_child_weight'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>],
+        <span class="hljs-string">'subsample'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>],
+        <span class="hljs-string">'colsample_bytree'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>]
     }
-</script>
-<script type="text/javascript">
-    // Initialize the echarts instance based on the prepared dom
-    let chartDom = document.getElementById('mainchart');
-    let myChart = echarts.init(chartDom);
+    </code></pre><p>The selected parameters and the details could be found in <a href="18_hyperparameter_optimisation.ipynb">Notebook 18</a>.</p>
+    <h2 id="training">Training</h2>
+    <p>Relevant Notebook: <a href="19a_standard_model_building.ipynb">19a</a>, <a href="19b_strict_model_building.ipynb">19b</a></p>
+    <p>We trained a model which were then separated to standard mode and a strict mode according to their decision border.</p>
+    <ul>
+        <li><strong>Standard Mode</strong><ul>
+            <li>Decision border 0.5</li>
+        </ul>
+        </li>
+        <li><strong>Strict Mode</strong><ul>
+            <li>Decision border scaled to 0.8 (0.8 normalised to 0.5)</li>
+        </ul>
+        </li>
+    </ul>
+    <h2 id="evaluation-metrics">Evaluation Metrics</h2>
+    <p>The model&#39;s performance should be evaluated using metrics that consider both classes, metrics such as MCC should be emphasised.
+        We will evaluate our model using these metrics:</p>
+    <ul>
+        <li>Matthews Correlation Coefficient (MCC)</li>
+        <li>Accuracy (Acc)</li>
+        <li>Balanced Accuracy (BAcc)</li>
+        <li>False Positive Rate (FPR)<ul>
+            <li>This is espicially important because we need to ensure the model does not produce false positive</li>
+        </ul>
+        </li>
+        <li>Area Under Receiver Operating Characteristic Curve (AUROC)</li>
+    </ul>
+    <h2 id="feature-importance-using-shap-shapley-additive-explanations-">Feature Importance using SHAP (SHapley Additive exPlanations)</h2>
+    <p>One of the primary objectives of this project is to gain a deeper understanding of the significance of various features,
+        knowledge that could be leveraged to enhance existing filters. Gaining insights into the model&#39;s performance is not merely beneficial but crucial.
+        A more interpretable model could substantially contribute to more informed and effective decision-making processes.</p>
+    <p>We sampled 10% of the data (~48k entries) to examien the overall importance of features and how the value of features are affecting the model.</p>
+    <p><img src="gsoc-2023-imgs/standard_model_shap_2.png" alt="">
+        <img src="gsoc-2023-imgs/standard_model_shap_1.png" alt=""></p>
+    <h3 id="prediction-explanation">Prediction Explanation</h3>
+    <p>You can view the explanation for the prediction using <code>--shap true</code> option, it is also defaulted to true in coordinates mode</p>
+    <p><img src="gsoc-2023-imgs/example_waterfall_plot_shap.png" alt=""></p>
+    <h1 id="results">Results</h1>
+    <p>Relevant Notebook: <a href="20a_external_benchmarking.ipynb">20a</a>, <a href="20b_external_benchmarking_gencode.ipynb">20b</a></p>
+    <h2 id="5-fold-stratified-cross-validation">5-Fold Stratified Cross Validation</h2>
+    <p>Standard Deviation (SD) of the folds are presented as the value after ±, only the first s.f. are shown in SD.</p>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Accuracy</th>
+            <th>B. Accuracy</th>
+            <th>FPR</th>
+            <th>MCC</th>
+            <th>AUROC<sub>score</sub></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ION (Standard mode)</td>
+            <td>0.933±0.0006</td>
+            <td>0.943±0.0009</td>
+            <td>0.078±0.002</td>
+            <td>0.860±0.002</td>
+            <td>0.985±0.002</td>
+        </tr>
+        <tr>
+            <td>ION (Strict   mode)</td>
+            <td>0.933±0.0006</td>
+            <td>0.933±0.0006</td>
+            <td>0.042±0.001</td>
+            <td>0.770±0.002</td>
+            <td>0.943±0.0004</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <h2 id="external-validation-benchmark">External Validation &amp; Benchmark</h2>
+    <h3 id="manually-annotated-lncrna-test-set">Manually annotated lncRNA test-set</h3>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Acc</th>
+            <th>B. Acc</th>
+            <th>FPR</th>
+            <th>MCC</th>
+            <th>AUROC<sub>score</sub></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ION (Standard mode)</td>
+            <td><strong>0.881</strong></td>
+            <td><strong>0.758</strong></td>
+            <td>0.392</td>
+            <td><strong>0.432</strong></td>
+            <td>0.814</td>
+        </tr>
+        <tr>
+            <td>ION (Strict   mode)</td>
+            <td>0.383</td>
+            <td>0.629</td>
+            <td>0.068</td>
+            <td>0.162</td>
+            <td>0.814</td>
+        </tr>
+        <tr>
+            <td>Filters (Intropolis)</td>
+            <td>0.366</td>
+            <td>0.633</td>
+            <td><strong>0.040</strong></td>
+            <td>0.171</td>
+            <td>0.633</td>
+        </tr>
+        <tr>
+            <td>Filters (Recount3)</td>
+            <td>0.701</td>
+            <td>0.654</td>
+            <td>0.403</td>
+            <td>0.191</td>
+            <td>0.654</td>
+        </tr>
+        <tr>
+            <td>SPLAM<sup>1</sup></td>
+            <td>0.483</td>
+            <td>0.674</td>
+            <td>0.091</td>
+            <td>0.205</td>
+            <td><strong>0.831</strong></td>
+        </tr>
+        </tbody>
+    </table>
+    <ol>
+        <li>True if both Donor score and Acceptor score &gt;= 0.5 else false</li>
+    </ol>
 
-    if (myChart.getWidth() < 500) {
-        offset_myChart = [0, 0]
-    } else { offset_myChart = [10,0]}
-
-    let option;
-    // Specify the configuration items and data for the chart
-    let pathSymbols = {
-        communication:'path://M323.4 85.2l-96.8 78.4c-16.1 13-19.2 36.4-7 53.1c12.9 17.8 38 21.3 55.3 7.8l99.3-77.2c7-5.4 17-4.2 22.5 2.8s4.2 17-2.8 22.5l-20.9 16.2L550.2 352H592c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48H516h-4-.7l-3.9-2.5L434.8 79c-15.3-9.8-33.2-15-51.4-15c-21.8 0-43 7.5-60 21.2zm22.8 124.4l-51.7 40.2C263 274.4 217.3 268 193.7 235.6c-22.2-30.5-16.6-73.1 12.7-96.8l83.2-67.3c-11.6-4.9-24.1-7.4-36.8-7.4C234 64 215.7 69.6 200 80l-72 48H48c-26.5 0-48 21.5-48 48V304c0 26.5 21.5 48 48 48H156.2l91.4 83.4c19.6 17.9 49.9 16.5 67.8-3.1c5.5-6.1 9.2-13.2 11.1-20.6l17 15.6c19.5 17.9 49.9 16.6 67.8-2.9c4.5-4.9 7.8-10.6 9.9-16.5c19.4 13 45.8 10.3 62.1-7.5c17.9-19.5 16.6-49.9-2.9-67.8l-134.2-123z',
-        statAnalysis:'path://M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z',
-        torch:'path://M55 21.9 C55 24.551 52.851 26.7 50.2 26.7 47.549 26.7 45.4 24.551 45.4 21.9 45.4 19.249 47.549 17.1 50.2 17.1 52.851 17.1 55 19.249 55 21.9 Z M63.1 28.3 L56.5 34.9 C67.3 45.7 67.3 63.1 56.5 73.7 45.7 84.5 28.3 84.5 17.7 73.7 6.9 62.9 6.9 45.5 17.7 34.9 L34.8 17.8 37.2 15.4 37.2 2.5 11.4 28.3 C-3 42.7 -3 65.9 11.4 80.3 25.8 94.7 49 94.7 63.1 80.3 77.5 65.8 77.5 42.7 63.1 28.3 Z',
-        binf:'path://M416 0c17.7 0 32 14.3 32 32c0 59.8-30.3 107.5-69.4 146.6c-28 28-62.5 53.5-97.3 77.4l-2.5 1.7c-11.9 8.1-23.8 16.1-35.5 23.9l0 0 0 0 0 0-1.6 1c-6 4-11.9 7.9-17.8 11.9c-20.9 14-40.8 27.7-59.3 41.5H283.3c-9.8-7.4-20.1-14.7-30.7-22.1l7-4.7 3-2c15.1-10.1 30.9-20.6 46.7-31.6c25 18.1 48.9 37.3 69.4 57.7C417.7 372.5 448 420.2 448 480c0 17.7-14.3 32-32 32s-32-14.3-32-32H64c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-59.8 30.3-107.5 69.4-146.6c28-28 62.5-53.5 97.3-77.4c-34.8-23.9-69.3-49.3-97.3-77.4C30.3 139.5 0 91.8 0 32C0 14.3 14.3 0 32 0S64 14.3 64 32H384c0-17.7 14.3-32 32-32zM338.6 384H109.4c-10.1 10.6-18.6 21.3-25.5 32H364.1c-6.8-10.7-15.3-21.4-25.5-32zM109.4 128H338.6c10.1-10.7 18.6-21.3 25.5-32H83.9c6.8 10.7 15.3 21.3 25.5 32zm55.4 48c18.4 13.8 38.4 27.5 59.3 41.5c20.9-14 40.8-27.7 59.3-41.5H164.7z',
-        python:'path://M439.8,200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0,36.8-31.2,67.8-66.8,67.8H172.7c-29.2,0-53.4,25-53.4,54.3v101.8c0,29,25.2,46,53.4,54.3,33.8,9.9,66.3,11.7,106.8,0,26.9-7.8,53.4-23.5,53.4-54.3v-40.7H226.2v-13.6h160.2c31.1,0,42.6-21.7,53.4-54.2,11.2-33.5,10.7-65.7,0-108.6zM286.2,404c11.1,0,20.1,9.1,20.1,20.3,0,11.3-9,20.4-20.1,20.4-11,0-20.1-9.2-20.1-20.4.1-11.3,9.1-20.3,20.1-20.3zM167.8,248.1h106.8c29.7,0,53.4-24.5,53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2,8-53.4,24.7-53.4,55.6v40.7h106.9v13.6h-147c-31.1,0-58.3,18.7-66.8,54.2-9.8,40.7-10.2,66.1,0,108.6,7.6,31.6,25.7,54.2,56.8,54.2H101v-48.8c0-35.3,30.5-66.4,66.8-66.4zm-6.7-142.6c-11.1,0-20.1-9.1-20.1-20.3.1-11.3,9-20.4,20.1-20.4,11,0,20.1,9.2,20.1,20.4s-9,20.3-20.1,20.3z',
-        visualisation:'path://M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z',
-        sql: 'path://M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z',
-        java: 'path://M277.74 312.9c9.8-6.7 23.4-12.5 23.4-12.5s-38.7 7-77.2 10.2c-47.1 3.9-97.7 4.7-123.1 1.3-60.1-8 33-30.1 33-30.1s-36.1-2.4-80.6 19c-52.5 25.4 130 37 224.5 12.1zm-85.4-32.1c-19-42.7-83.1-80.2 0-145.8C296 53.2 242.84 0 242.84 0c21.5 84.5-75.6 110.1-110.7 162.6-23.9 35.9 11.7 74.4 60.2 118.2zm114.6-176.2c.1 0-175.2 43.8-91.5 140.2 24.7 28.4-6.5 54-6.5 54s62.7-32.4 33.9-72.9c-26.9-37.8-47.5-56.6 64.1-121.3zm-6.1 270.5a12.19 12.19 0 0 1-2 2.6c128.3-33.7 81.1-118.9 19.8-97.3a17.33 17.33 0 0 0-8.2 6.3 70.45 70.45 0 0 1 11-3c31-6.5 75.5 41.5-20.6 91.4zM348 437.4s14.5 11.9-15.9 21.2c-57.9 17.5-240.8 22.8-291.6.7-18.3-7.9 16-19 26.8-21.3 11.2-2.4 17.7-2 17.7-2-20.3-14.3-131.3 28.1-56.4 40.2C232.84 509.4 401 461.3 348 437.4zM124.44 396c-78.7 22 47.9 67.4 148.1 24.5a185.89 185.89 0 0 1-28.2-13.8c-44.7 8.5-65.4 9.1-106 4.5-33.5-3.8-13.9-15.2-13.9-15.2zm179.8 97.2c-78.7 14.8-175.8 13.1-233.3 3.6 0-.1 11.8 9.7 72.4 13.6 92.2 5.9 233.8-3.3 237.1-46.9 0 0-6.4 16.5-76.2 29.7zM260.64 353c-59.2 11.4-93.5 11.1-136.8 6.6-33.5-3.5-11.6-19.7-11.6-19.7-86.8 28.8 48.2 61.4 169.5 25.9a60.37 60.37 0 0 1-21.1-12.8z',
-        train:'path://M32,32H480c17.7,0,32,14.3,32,32V96c0,17.7-14.3,32-32,32H32C14.3,128,0,113.7,0,96V64C0,46.3,14.3,32,32,32zm0,128H480V416c0,35.3-28.7,64-64,64H96c-35.3,0-64-28.7-64-64V160zm128,80c0,8.8,7.2,16,16,16H336c8.8,0,16-7.2,16-16s-7.2-16-16-16H176c-8.8,0-16,7.2-16,16z',
-        haskell:'path://M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z',
-        js:'path://M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM243.8 381.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z',
-        r:'path://M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z'
-    };
-    const labelSetting = {
-        show: true,
-        position: 'right',
-        offset: offset_myChart,
-        fontSize: 16,
-        textStyle: {
-            color: '#ffffff'
-        }
-
-    };
-    function makeOption(type, symbol) {
-        return {
-            tooltip: {
-                trigger: 'item',
-                axisPointer: {
-                    type: 'shadow'
-                },
-                formatter: function(params) {
-                    return  `<p class="lead">${params.data.tt_name}</p>${params.data.tt_pj} related projects<br/>${params.data.tt_yoe} years of experience<br/>${params.data.tt_ct} related courses taken`;
-                }
-            },
-            grid: {
-                containLabel: true,
-                left: 0,
-                top: 0,
-                // right: 20,
-                bottom: 0
-            },
-            yAxis: {
-
-                // data: ['Python', 'SQL', 'Java', 'HTML/CSS/JS', 'R', "Haskell"],
-                data:[{
-                    value: 'Python',
-                    // Highlight Monday
-                    textStyle: {
-                        color: '#ffffff'
-                    }
-                }, {
-                    value: 'SQL',
-                    // Highlight Monday
-                    textStyle: {
-                        color: '#ffffff'
-                    }
-                },{
-                    value: 'Java',
-                    // Highlight Monday
-                    textStyle: {
-                        color: '#ffffff'
-                    }
-                },{
-                    value: 'HTML/CSS/JS',
-                    // Highlight Monday
-                    textStyle: {
-                        color: '#ffffff'
-                    }
-                },{
-                    value: 'R',
-                    // Highlight Monday
-                    textStyle: {
-                        color: '#ffffff'
-                    }
-                },{
-                    value: 'Haskell',
-                    // Highlight Monday
-                    textStyle: {
-                        color: '#ffffff'
-                    }
-                }],
-                inverse: true,
-                color: "#ffffff",
-                axisLine: { show: false },
-                axisTick: { show: false },
-                axisLabel: {
-                    margin: 40,
-                    fontSize: 14
-                },
-                axisPointer: {
-                    label: {
-                        show: true,
-                        margin: 30
-                    }
-                }
-            },
-            xAxis: {
-                splitLine: { show: false },
-                axisLabel: { show: false },
-                axisTick: { show: false },
-                axisLine: { show: false },
-                textStyle: {
-                    color: '#ffffff'
-                },
-            },
-
-            animationDurationUpdate: 500,
-            series: [
-                {
-                    id: 'bar1',
-                    type: type,
-                    label: labelSetting,
-                    stack: 'total',
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    showBackground: false,
-                    symbolRepeat: true,
-                    symbolSize: ['100%', '100%'],
-                    barCategoryGap: '40%',
-                    universalTransition: {
-                        enabled: true,
-                        delay: function (idx, total) {
-                            return (idx / total) * 1000;
-                        }
-                    },data: [{value: 100, symbol: symbol || pathSymbols.python, tt_name:"Python", tt_pj:"20", tt_yoe:"5", tt_ct:"12"}, // Python
-                        {value: 80, symbol: symbol || pathSymbols.sql, tt_name:"SQL", tt_pj:"3", tt_yoe:"2", tt_ct:"3"}, // SQL
-                        {value: 80, symbol: symbol || pathSymbols.java, tt_name:"Java", tt_pj:"6", tt_yoe:"2", tt_ct:"3"}, // Java
-                        {value: 75, symbol: symbol || pathSymbols.js, tt_name:"Web Dev", tt_pj:"4", tt_yoe:"3", tt_ct:"4"}, // Web
-                        {value: 60, symbol: symbol || pathSymbols.r, tt_name:"R", tt_pj:"4", tt_yoe:"2", tt_ct:"3"}, // R
-                        {value: 60, symbol: symbol || pathSymbols.haskell, tt_name:"Haskell", tt_pj:"3", tt_yoe:"1", tt_ct:"1"}, //haskell
-                    ] // web
-                },
-
-            ]
-        };
-    }
-    var options = [
-        makeOption('pictorialBar'),
-        makeOption('bar'),
-        // makeOption('pictorialBar', 'diamond')
-    ];
-    var optionIndex = 0;
-    option = options[optionIndex];
-
-
-    setInterval(function () {
-        optionIndex = (optionIndex + 1) % options.length;
-        myChart.setOption(options[optionIndex]);
-
-        optionIndex2 = (optionIndex2 + 1) % options2.length;
-        myChart2.setOption(options2[optionIndex2]);
-    }, 10000);
-
-    // Display the chart using the configuration items and data just specified.
-    myChart.setOption(option);
-</script>
-<script>
-
-    window.addEventListener('load', function() {
-        var loadingSpinner = document.getElementById('loading-spinner');
-        var loadingContainer = document.getElementById('loading');
-        var contentContainer = document.getElementById('home');
-
-        setTimeout(function() {
-            loadingContainer.style.display = 'none';
-            contentContainer.style.display = 'block';
-        }, 2000);
-    });
-
-    function myScript() {
-        // myFunction();
-        location.hash = ""
-        // alert("This message was triggered from the onunload event");
-
-    }
-
-    // window.addEventListener("beforeunload", myScript);
-
-    function myGreeting() {
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("hide");
-        //     FIXME
-    }
-
-
-    function myFunction() {
-        // Copy the text inside the text field
-        navigator.clipboard.writeText("");
-
-        // Alert the copied text
-        // alert("Copied the email to the clipboard");
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
-        const myTimeout = setTimeout(myGreeting, 1000)
-    }
-
-    $('body').scrollspy({ target: '#navbar-example'})
-</script>
-<script src="skill_chart_2.js"></script>
-<script>
-    let div = document.getElementById("project-display");
-    let children = div.children;
-    for (let i = 0; i < children.length; i++) {
-        children[i].style.display = "none";
-    }
-
-    function project_click_handler(this_id, text_id) {
-        // make other div invisible
-        let div = document.getElementById("project-display");
-        let children = div.children;
-        for (let i = 0; i < children.length; i++) {
-            children[i].style.display = "none";
-        }
-
-        // make active nav element not active
-        let xy = document.getElementsByClassName("active");
-        let i;
-        for (i = 0; i < xy.length; i++) {
-            if (xy[i].parentElement.parentElement.parentElement.parentElement.id !== "top-nav-bar"){
-                xy[i].classList.remove("active"); // Remove active from the class in all top-nav-bar elements
-            }
-        }
-    }
-</script>
+    <h3 id="gencode-v46-newly-added-introns">GENCODE v46 Newly Added Introns</h3>
+    <p>As only single class is available (accepted/positive), only accuracy is included</p>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Accuracy</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ION (Standard mode)</td>
+            <td><strong>0.913</strong></td>
+        </tr>
+        <tr>
+            <td>ION (Strict   mode)</td>
+            <td>0.149</td>
+        </tr>
+        <tr>
+            <td>SPLAM<sup>1</sup></td>
+            <td>0.762</td>
+        </tr>
+        </tbody>
+    </table>
+    <ol>
+        <li>True if both Donor score and Acceptor score &gt;= 0.5 else false</li>
+    </ol>
+    <h2 id="summary">Summary</h2>
+    <p>It is important to note that we only have limited negative data to fully benchmark the FPR performance of all models.
+        And the lncRNA dataset is also arguably a relatively hard external test set for the model. Comparing the models,
+        ION (standard mode) has the best balanced accuracy and MCC significantly better than other mode and models, however,
+        it is also suffered from high FPR. It is also notable that SPLAM and the Intropolis-based filter performed quite well in terms
+        of FPR.</p>
+    <h1 id="challenges-future-work">Challenges &amp; Future work</h1>
+    <p>There are rumours challenges in this project. Most notably is the imbalance of the training data, as the majority of the data
+        are obtained by extracting introns from annotation, this makes the majority of the train-set &quot;positive&quot;. This causes a huge
+        problem at the beginning, although we dampen it with the generation of false data, the ration of positive vs negative is still
+        around 4:1, a better model could be built with the generation of more false introns, presumably sets accumulated by annotators
+        or a more comprehensive simulation of introns using the method utilised in this project.</p>
+    <h1 id="conclusion">Conclusion</h1>
+    <p>We have successfully developed a model ION that predicts the legitimacy of an intron. The performance of ION is comparable
+        to deep learning methods such as SpliceAI and SPLAM, while still being interpretable. This would allow annotators and users
+        to use this program to evaluate introns and understand the decision behind it. Many improvements could be make to improve
+        this model including generating higher quality &quot;negative&quot; introns and further tuning and experimenting with other features and models.</p>
+    <h1 id="acknowledgements-and-remarks">Acknowledgements and Remarks</h1>
+    <p>I am truly grateful for the unwavering support I&#39;ve received throughout the course of this project from the mentors.
+        Despite an initial slow start, my mentors have been incredibly supportive, providing invaluable guidance
+        through daily communication and during our regular meetings.</p>
+    <p>From the moment I was accepted into the program to its near completion, I have been continually awed and humbled by the
+        wealth of knowledge and skills I&#39;ve gained through this experience. My primary focus has traditionally been in the realm
+        of computational bio/chemistry, which made the opportunity to delve into an unfamiliar domain through this
+        project all the more exhilarating for me.</p>
+</div>
 
 </body>
 </html>
