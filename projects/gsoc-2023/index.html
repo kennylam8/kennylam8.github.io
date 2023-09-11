@@ -290,7 +290,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 
     <h1 id="work-done">Work Done</h1>
     <p>All the work done in this project including all the commits can be found at <a href="https://github.com/kennylam8/IntronOrNot/">https://github.com/kennylam8/IntronOrNot/</a></p>
-    <p>The latest commit as of the submission of the GSoC final evaluation is: <a href="https://github.com/kennylam8/IntronOrNot/commit/a6a2151409bf1d8b762d262d6de90f84a5fcebdf">a6a21</a></p>
+    <p>The latest commit as of the submission of the GSoC final evaluation is: <a href="https://github.com/kennylam8/IntronOrNot/commit/5989b207fb254906f1edd2f306229579403b980a">a6a21</a></p>
     <p>We documented the process of testing and building the model using Jupyter-Notebooks, all of the notebook can be found at the root directory of the Github repository</p>
     <p>We documented the process of testing and building the model using Jupyter-Notebooks, all of the notebook can be found at the root directory of the Github repository</p>
     <h1 id="table-of-contents">Table of Contents</h1>
@@ -344,6 +344,8 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         <a href="https://www.ebi.ac.uk/people/person/adam-frankish/">Adam Frankish</a></p>
     <h1 id="graphical-abstract" >Graphical Abstract</h1>
     <p><img src="gsoc-2023-imgs/ga.png" style="height: auto; width: 100%" alt=""></p>
+    <p style="text-align: right;">Created with BioRender.com</p>
+    <br/>
     <h1><a class="anchor" id="getting-started"></a>Getting Started</h1>
     <h3 id="installation">Installation</h3>
     <ul>
@@ -714,15 +716,34 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         <li>True if both Donor score and Acceptor score &gt;= 0.5 else false</li>
     </ol>
     <h2 id="-a-name-test-summary-a-summary"><a class="anchor" id="test-summary"></a>Summary</h2>
-    <p>Comparing the models, all mode of ION performs as good as or better than current filters and as good as SPLAM in most metrics.
-        It is important to note that we only have limited negative data to fully benchmark the FPR performance of all models.
-        And the lncRNA dataset is also arguably a relatively hard external test set for all models. </p>
+    <p>Table 1 provides a comparative evaluation of different machine learning models designed to classify long non-coding
+        RNAs (lncRNAs) based on a manually annotated test set. Among the models, ION in High-Recall Mode stands out for its superior
+        performance across multiple metrics: it boasts the highest accuracy (0.860), Matthews Correlation Coefficient (0.361), and
+        AUROC score (0.858). It also excels in recall with a rate of 0.890, suggesting that it is particularly effective at correctly
+        identifying positive cases. However, this high recall comes at the expense of a higher False Positive Rate (FPR) of 0.443,
+        indicating that the model also incorrectly classifies a considerable number of negative cases as positive.
+    </p>
+    <p>ION in Standard Mode achieves the highest Balanced Accuracy of 0.784 and maintains a relatively low FPR of 0.165,
+        offering a balanced performance between sensitivity and specificity. ION in High-Precision Mode excels in precision
+        with a score of 0.992 and has the lowest FPR of 0.028, but lags in recall and overall accuracy. Filters (Intropolis)
+        and Filters (Recount3) generally perform lower across most metrics, while SPLAM<sup>1</sup> shows moderate results.
+        Each model appears to have its strengths and weaknesses, providing options to choose based on the specific requirements
+        of an lncRNA classification task.</p>
+    <p>Table 2 provides comparison of models. As only accepted data are available in GENCODE, we can only compare their accuracy,
+        we can see that the high-recall mode of ION has the best accuracy, while other both the standard and high-precision mode suffered
+        from relatively low accuracy compared to SPLAM, which achieved 77.2%.</p>
     <h1 id="-a-name-challenges-limitation-and-future-work-a-challenges-limitations-and-future-work"><a class="anchor" id="challenges-limitation-and-future-work"></a>Challenges, Limitations, and Future Work</h1>
-    <p>There are rumours challenges in this project. Most notably is the imbalance of the training data, as the majority of the data
-        are obtained by extracting introns from annotation, this makes the majority of the train-set &quot;positive&quot;. This causes a huge
+    <p>There are numerous challenges in this project. Most notably is the imbalance of the training data, as the majority of the data
+        are obtained by extracting introns from annotation, this makes the majority of the train-set "positive". This causes a huge
         problem at the beginning, although we dampen it with the generation of false data, the ration of positive vs negative is still
         around 4:1, a better model could be built with the generation of more false introns, presumably sets accumulated by annotators
         or a more comprehensive simulation of introns using the method utilised in this project.</p>
+    <p>The performance of the machine learning model is limited to the training data, although recount3 is the most comprehensive dataset available to this data,
+        in the future, model should be retrained and adjusted in accordance to the newer data.</p>
+    <p>ION is built on many experimental and empirical data, like recount3 score, repeat regions, and conservation scores. On the other hand, there are
+        tools that predicts introns using the sequence alone, such as SpliceAI and SPLAM. Future work could expan on integrating both sequence-based
+        intron prediction and experimental data. Additionally, the recent development in protein structure predict might allow us to incorporate structural
+        prediction of the actual protein (analysis the legitimacy of introns using the final structure of the protein).</p>
     <h1 id="-a-name-conclusion-a-conclusion"><a class="anchor" id="conclusion"></a>Conclusion</h1>
     <p>We have successfully developed a model ION that predicts the legitimacy of an intron. The performance of ION is comparable
         to deep learning methods such as SpliceAI and SPLAM, while still being interpretable. This would allow annotators and users
