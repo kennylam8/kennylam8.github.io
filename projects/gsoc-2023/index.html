@@ -234,6 +234,9 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         border: 1px solid black;
     }
 </style>
+<style>
+    a.anchor{display: block; position: relative; top: -70px; visibility: hidden;}
+</style>
 <body>
 
 <nav class="navbar bg-dark navbar-expand-sm bg-body-tertiary sticky-top">
@@ -276,45 +279,84 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 <div class="container">
     <br/>
     <h1 id="google-summer-of-code-2023-br-differentiating-real-and-misaligned-introns-with-machine-learning">Google Summer of Code 2023: <br/> Differentiating Real and Misaligned Introns with Machine Learning</h1>
-    <p><img src="https://img.shields.io/badge/licence-MIT-blue" alt="licence of this project is MIT">
-        <img src="https://img.shields.io/badge/Python-3.10-orange" alt="Built using Python 3.10"></p>
-    <h2 id="work-done">Work done</h2>
-    <p>Work done during the project could be found in <a href="https://github.com/kennylam8/IntronOrNot">https://github.com/kennylam8/IntronOrNot</a><br/>
-        This page is a conversion of the README.md file displayed at the link above, it is best viewed in the original format at Github</a></p>
+    <p><img src="https://img.shields.io/badge/licence-MIT-blue" alt="Static Badge">
+        <img src="https://img.shields.io/badge/Python-3.10-orange" alt="Static Badge"></p>
+    <p>To address issue that strict filters rejects most of the legitimate introns,
+        we developed IntronOrNot (ION) - a machine learning to differentiate that predicts
+        if the intron is real or misaligned. The model accepts coordinates, .bed, and .gtf file as input.
+        The prediction script is easy to use and achieved comparable results
+        to sequenced-based deep learning intron predictor. A standalone function
+        that extracts intron from .gtf is also included.</p>
 
-    <h2 id="organisation">Organisation</h2>
+    <h1 id="work-done">Work Done</h1>
+    <p>All the work done in this project including all the commits can be found at <a href="https://github.com/kennylam8/IntronOrNot/">https://github.com/kennylam8/IntronOrNot/</a></p>
+    <p>The latest commit as of the submission of the GSoC final evaluation is: <a href="https://github.com/kennylam8/IntronOrNot/">TBC</a></p>
+    <p>We documented the process of testing and building the model using Jupyter-Notebooks, all of the notebook can be found at the root directory of the Github repository</p>
+    <p>We documented the process of testing and building the model using Jupyter-Notebooks, all of the notebook can be found at the root directory of the Github repository</p>
+    <h1 id="table-of-contents">Table of Contents</h1>
+    <ul>
+        <li><a href="#organisation">Organisation &amp; Mentors</a></li>
+        <li><a href="#getting-started">Getting Started</a><ul>
+            <li><a href="#usage">Usage</a></li>
+        </ul>
+        </li>
+        <li><a href="#background">Background</a><ul>
+            <li><a href="#goal">Project Goal</a></li>
+        </ul>
+        </li>
+        <li><a href="#training-set">Training Set Preparation</a><ul>
+            <li><a href="#pos-trainset">Positive Class Data</a></li>
+            <li><a href="#neg-trainset">Negative Class Data</a></li>
+        </ul>
+        </li>
+        <li><a href="#feature-eng">Feature Engineering</a><ul>
+            <li><a href="#feature-tested">Features Tested</a></li>
+            <li><a href="#feature-selection">Feature Selection</a></li>
+        </ul>
+        </li>
+        <li><a href="#ml-model">Machine Learning Model</a><ul>
+            <li><a href="#model-arc">Model Architecture</a></li>
+            <li><a href="#hyperparam-opt">Hyperparameter Optimisation</a></li>
+            <li><a href="#model-training">Training</a></li>
+            <li><a href="#model-eval">Evaluation Metrics</a></li>
+            <li><a href="#shap">Feature Importance using SHAP (SHapley Additive exPlanations)</a></li>
+            <li><a href="#pred-expl">Prediction Explanation</a></li>
+        </ul>
+        </li>
+        <li><a href="#results">Results</a><ul>
+            <li><a href="#cross-val">10-Fold Stratified Cross Validation</a></li>
+            <li><a href="#external-val">External Validation &amp; Benchmark</a></li>
+            <li><a href="#test-summary">Summary</a></li>
+        </ul>
+        </li>
+        <li><a href="#challenges-limitation-and-future-work">Challenges, Limitations, and Future Work</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#remarks">Acknowledgements and Remarks</a></li>
+    </ul>
+    <a class="anchor" id="organisation"></a>
+    <h1>Organisation &amp; Mentors</h1>
     <p>Genome Assembly and Annotation (European Bioinformatics Institute / EMBL-EBI)</p>
-    <h2 id="research-group">Research Group</h2>
+    <h3 id="research-group">Research Group</h3>
     <p>Ensembl - <a href="https://www.ebi.ac.uk/about/teams/genome-interpretation/">Genome Interpretation Teams</a></p>
-    <h2 id="mentors">Mentors</h2>
+    <h3 id="mentors">Mentors</h3>
     <p><a href="https://www.ebi.ac.uk/people/person/jose-manuel-gonzalez-martinez/">Jose Gonzalez</a><br/>
         <a href="https://www.ebi.ac.uk/people/person/jonathan-mudge/">Jonathan Mudge</a><br/>
         <a href="https://www.ebi.ac.uk/people/person/adam-frankish/">Adam Frankish</a></p>
-    <h1 id="graphical-abstract">Graphical Abstract</h1>
-    <img style="max-width: 100%; height: auto;" src="gsoc-2023-imgs/ga.png"/>
-
-<!--    <div id="table-of-contents">-->
-<!--        <h2>Table of Contents</h2>-->
-<!--        <ul>-->
-<!--            <li><a href="#getting-started">Getting Started</a></li>-->
-<!--            <li><a href="#section2">Section 2</a></li>-->
-<!--            <li><a href="#section3">Section 3</a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-
-    <h1 id="getting-started">Getting Started</h1>
+    <h1 id="graphical-abstract" >Graphical Abstract</h1>
+    <p><img src="gsoc-2023-imgs/ga.png" style="height: auto; width: 100%" alt=""></p>
+    <h1><a class="anchor" id="getting-started"></a>Getting Started</h1>
     <h3 id="installation">Installation</h3>
     <ul>
         <li>Download the latest zipped script in <code>Releases</code></li>
         <li>Install the required dependencies detailed below</li>
     </ul>
-    <h3 id="environment">Environment</h3>
+    <h3 id="-a-name-enviroment-a-environment"><a class="anchor" id="enviroment"></a>Environment</h3>
     <ul>
         <li>32 GB of RAM or more is required for a large .bed file</li>
         <li>Multi-thread support is default to enabled with the Pandarallel library</li>
     </ul>
-    <h3 id="package-requirements">Package Requirements</h3>
-    <p><strong>Please Note that this requirement is for the ION script in <code>Releases</code>, not the notebooks</strong>\
+    <h3 id="-a-name-package-req-a-package-requirements"><a class="anchor" id="package-req"></a>Package Requirements</h3>
+    <p><strong>Please Note that this requirement is for the final ION script in <code>Releases</code>, not the notebooks</strong>\
         <br/>
         biopython==1.81\
         matplotlib==3.5.2\
@@ -327,28 +369,18 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         shap==0.41.0\
         tqdm==4.64.0\
         xgboost==1.6.2</p>
-    <h2 id="usage">Usage</h2>
+    <p><strong>Please Note that this requirement is for the ION script in <code>Releases</code>, not the notebooks</strong>\</p>
+    <h2 id="-a-name-usage-a-usage"><a class="anchor" id="usage"></a>Usage</h2>
     <p>Coordinate mode (1-based):</p>
-    <div class="card card-body bg-light">
-        <code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --shap false --<span class="hljs-built_in">type</span> coords chr12 <span class="hljs-number">126729967</span> <span class="hljs-number">126732342</span> -
-    </code>
-    </div><br/>
-
-    <p>BED mode:</p>
-    <div class="card card-body bg-light">
-        <code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed</code>
-    </div><br/>
-
-
-
-    <p>GTF mode:</p>
-    <div class="card card-body bg-light">
-        <code>TBA</code>
-<!--        <code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> &#45;&#45;<span class="hljs-keyword">mode</span> standard &#45;&#45;<span class="hljs-built_in">type</span> bed &#45;&#45;<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed</code>-->
-    </div><br/>
-
-    </code></pre><p>IMPORTANT: ION can only evaluate intorns with canonical splice-site (GT:AG, GC:AG, AT:AC)</p>
-    <h1 id="background">Background</h1>
+    <pre><code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --shap true --<span class="hljs-built_in">type</span> coord chr12 <span class="hljs-number">126729967</span> <span class="hljs-number">126732342</span> -
+</code></pre><p>BED mode:</p>
+    <pre><code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> high-recall --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed
+<span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed
+<span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> high-precision --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed
+</code></pre><p>GTF mode:</p>
+    <pre><code><span class="hljs-symbol">To</span> <span class="hljs-keyword">Be </span>Implemented
+</code></pre><p>IMPORTANT: ION can only evaluate intorns with canonical splice-site (GT:AG, GC:AG, AT:AC)</p>
+    <h1 id="-a-name-background-a-background"><a class="anchor" id="background"></a>Background</h1>
     <p>Understanding the impact of genetic variation on disease requires comprehensive gene annotation.
         Human genes are well characterised following more than two decades of work on their annotation, however,
         we know that this annotation is not complete and that new experimental methods are generating data
@@ -361,7 +393,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         using it as a standalone classification filter or analysing the decision-making methods of the model and consequently
         improving the rule-set used in the automated workflow.</p>
     <p>You can read more about the background of this project at: <a href="https://github.com/jmgonzmart/GSoC_ML_gene_annot">https://github.com/jmgonzmart/GSoC_ML_gene_annot</a></p>
-    <h2 id="project-goal">Project Goal</h2>
+    <h2 id="-a-name-goal-a-project-goal"><a class="anchor" id="goal"></a>Project Goal</h2>
     <p>This project consists of the following deliverables and goals:</p>
     <ul>
         <li>Install/prepare the environment and repository for the project.</li>
@@ -374,16 +406,16 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
             decision-making.</li>
         <li>Run the final model on novel transcripts and produce a detailed report of the results.</li>
     </ul>
-    <h1 id="training-set-preparation">Training Set Preparation</h1>
-    <h2 id="positive-class-data">Positive Class Data</h2>
-    <p>Relevant Notebook: <a href="01_extract_introns_from_gencode.ipynb">01</a></p>
+    <h1 id="-a-name-training-set-a-training-set-preparation"><a class="anchor" id="training-set"></a>Training Set Preparation</h1>
+    <h2 id="-a-name-pos-trainset-a-positive-class-data"><a class="anchor" id="pos-trainset"></a>Positive Class Data</h2>
+    <p>Relevant Notebook: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/01_extract_introns_from_gencode.ipynb">01</a></p>
     <p>We used the GENCODE v44 (<a href="https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/">https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/</a>) as our positive set. We
         used a script to extract all the introns out of the .gtf file.</p>
-    <h2 id="negative-class-data">Negative Class Data</h2>
-    <p>Relevant Notebook: <a href="02_extract_negative_introns.ipynb">02</a>, <a href="03_generating_false_introns.ipynb">03</a>, <a href="04_combining_positive_and_negative_train_set.ipynb">04</a></p>
+    <h2 id="-a-name-neg-trainset-a-negative-class-data"><a class="anchor" id="neg-trainset"></a>Negative Class Data</h2>
+    <p>Relevant Notebook: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/02_extract_negative_introns.ipynb">02</a>, <a href="https://github.com/kennylam8/IntronOrNot/blob/main/03_generating_false_introns.ipynb">03</a>, <a href="https://github.com/kennylam8/IntronOrNot/blob/main/04_combining_positive_and_negative_train_set.ipynb">04</a></p>
     <p>We used two source for generating negative class data.</p>
     <ul>
-        <li><p>We have access to a previously gene annotators&#39; manually reviewed data, the dataset contains ~11000 introns, after removing introns that are already accepted in current version, 403 negative introns were obtained.</p>
+        <li><p>We have access to a previous gene annotators&#39; manually reviewed data, the dataset contains ~11000 introns, after removing introns that are already accepted in current version, 403 negative introns were obtained.</p>
         </li>
         <li><p>To simulate how false intron data could be presented in real data, we ultilized <a href="https://academic.oup.com/nargab/article/4/4/lqac092/6855700">PBSIM3</a> (Ono et al., 2022), a simulator for long-read sequencers that
             is capable to simulate both PacBio RS II continuous long reads (CLR) and Oxford Nanopore Technology (ONT) reads. We simulated the reads using GENCODE v44 <code>Long non-coding RNA transcript sequences</code> and <code>Protein-coding transcript sequences</code> RNA data. We simulated them using four different settings:</p>
@@ -398,48 +430,48 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     <p>The reads were then aligned to the human genome respectively using <a href="https://doi.org/10.1093/bioinformatics/bty191">Minimap2</a> (Li, 2018), and intronic regions of all alignments were then extracted and
         compared against the current GENCODE annotation and those that were not in the current GENCODE annotation is treated as false/misaligned introns.
         About 110,000 false introns were obtained.</p>
-    <h1 id="feature-engineering">Feature Engineering</h1>
-    <h2 id="features-tested">Features Tested</h2>
+    <h1 id="-a-name-feature-eng-a-feature-engineering"><a class="anchor" id="feature-eng"></a>Feature Engineering</h1>
+    <h2 id="-a-name-feature-tested-a-features-tested"><a class="anchor" id="feature-tested"></a>Features Tested</h2>
     <p>9 categories of features were generated:</p>
     <ul>
-        <li>Recount3 score: <a href="05_trainset_recount3_feature.tsv">Notebook 05</a><ul>
+        <li>Recount3 score: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/05_trainset_recount3_feature.tsv">Notebook 05</a><ul>
             <li>Based on the data extracted from the intronic region of <code>recount3: summaries and queries for large-scale RNA-seq expression and splicing</code> (Wilks et al.)</li>
         </ul>
         </li>
-        <li>Repeat region: <a href="06_trainset_repeat_feature.tsv">Notebook 06</a><ul>
+        <li>Repeat region: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/06_trainset_repeat_feature.tsv">Notebook 06</a><ul>
             <li>Check if any of the splice-sites lies in repeating regions.</li>
         </ul>
         </li>
-        <li>Antisense Exon: <a href="07_trainset_antisense_feature.tsv">Notebook 07</a></li>
-        <li>Distance of next nearest existing splice-site: <a href="09_trainset_nearest_alt_ss_dist_feature">Notebook 09</a><ul>
+        <li>Antisense Exon: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/07_trainset_antisense_feature.tsv">Notebook 07</a></li>
+        <li>Distance of next nearest existing splice-site: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/09_trainset_nearest_alt_ss_dist_feature">Notebook 09</a><ul>
             <li>Check the coordinate of both the donor and acceptor splice-site against current annotation (GENCODE v44) and calculate the distance between the splice site and the closest annotated splice-site nearby (excluding exact match).</li>
         </ul>
         </li>
-        <li>MaxEntScan score: <a href="10_trainset_MaxEntScan_feature.tsv">Notebook 10</a><ul>
+        <li>MaxEntScan score: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/10_trainset_MaxEntScan_feature.tsv">Notebook 10</a><ul>
             <li>Based on the script/methodology developed by Yeo and Burge - <code>Maximum entropy modeling of short sequence motifs with applications to RNA splicing signals</code></li>
         </ul>
         </li>
-        <li>Basic sequence based feature: <a href="11_trainset_basic_features.tsv">Notebook 11</a><ul>
+        <li>Basic sequence based feature: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/11_trainset_basic_features.tsv">Notebook 11</a><ul>
             <li>Calculates the GC content.</li>
             <li>Determines whether the sequence can be considered a CpG island based on the ratio of CpG dinucleotides and the GC content in the sequence.</li>
             <li>Calculates the intron length.</li>
         </ul>
         </li>
-        <li>Conservation scores: <a href="12_trainset_conservation_scores_feature.tsv">Notebook 12</a><ul>
+        <li>Conservation scores: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/12_trainset_conservation_scores_feature.tsv">Notebook 12</a><ul>
             <li>Calculate the splice-site conservation scores with the <a href="https://doi.org/10.1101/gr.3715005">PhastCon</a> and <a href="https://doi.org/10.1101%2Fgr.097857.109">PhyloP</a> conservation resources downloaded from the <a href="https://doi.org/10.1093%2Fbib%2Fbbs038">UCSC genome browser</a>.</li>
         </ul>
         </li>
-        <li>Splice-site with better Recount3 score nearby: <a href="13_recount3_near_ss_with_better_score_feature.tsv">Notebook 13</a><ul>
+        <li>Splice-site with better Recount3 score nearby: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/13_recount3_near_ss_with_better_score_feature.tsv">Notebook 13</a><ul>
             <li>We look at 5nt further at both direction of the splice-site and see if there is a splice-site recorded in recount3 that has a better score</li>
         </ul>
         </li>
-        <li>Branch Point Prediction (BPP) score: <a href="14_trainset_BPP_score_feature.tsv">Notebook 14</a><ul>
+        <li>Branch Point Prediction (BPP) score: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/14_trainset_BPP_score_feature.tsv">Notebook 14</a><ul>
             <li>Branch point prediction using <a href="https://doi.org/10.1093/bioinformatics/btx401">BPP</a> (Zhang el al.)</li>
         </ul>
         </li>
     </ul>
-    <h2 id="feature-selection">Feature Selection</h2>
-    <p>Relevant Notebook: <a href="17_feature_selection.ipynb">17</a></p>
+    <h2 id="-a-name-feature-selection-a-feature-selection"><a class="anchor" id="feature-selection"></a>Feature Selection</h2>
+    <p>Relevant Notebook: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/17_feature_selection.ipynb">17</a></p>
     <p>To make the model easier to interpret, and improve its performance. We simplify the model using feature selection.</p>
     <p>We intentionally drop some features that we learned from empirical knowledge from the annotators are unimportant, namely the strand and chromosome of the introns.</p>
     <p>We performed feature selection using RFECV:
@@ -448,37 +480,46 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         Elimination (RFE), which eliminates feature one by one according to their validation performance, RFECV incorporates
         cross-validation (5-fold were chosen) for evaluation.</p>
     <p>We also dropped the <code>sc</code> feature which is generated by the BPP script, as it has relatively less importance (reflected by the RFECV result) and not easily interpretable, and also introns lesser than certain length could not obtain the <code>sc</code> feature, we decided to remove it. </p>
-    <p>24 features were chosen. Refer to the second last cell of <a href="17_feature_selection.ipynb">Notebook 17</a> for more details.</p>
-    <h1 id="machine-learning-model">Machine Learning Model</h1>
-    <h2 id="model-architecture">Model Architecture</h2>
+    <p>24 features were chosen. Refer to the second last cell of <a href="https://github.com/kennylam8/IntronOrNot/blob/main/17_feature_selection.ipynb">Notebook 17</a> for more details.</p>
+    <h1 id="-a-name-ml-model-a-machine-learning-model"><a class="anchor" id="ml-model"></a>Machine Learning Model</h1>
+    <h2 id="-a-name-model-arc-a-model-architecture"><a class="anchor" id="model-arc"></a>Model Architecture</h2>
     <p>We have tested different model architecture including Explainable Boosting Machine (EBM), RandomForest (RF), and more. We
         chose XGBoost as the model for this task for its good performance in internal validation.</p>
-    <h2 id="hyperparameter-optimisation">Hyperparameter Optimisation</h2>
-    <p>Relevant Notebook: <a href="18_hyperparameter_optimisation.ipynb">18</a></p>
+    <h2 id="-a-name-hyperparam-opt-a-hyperparameter-optimisation"><a class="anchor" id="hyperparam-opt"></a>Hyperparameter Optimisation</h2>
+    <p>Relevant Notebook: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/18_hyperparameter_optimisation.ipynb">18</a></p>
     <p>We chose the hyperparameter the XGBoost model using exhaustive grid searching with 3-fold cross-validation of the following parameter:</p>
     <pre><code>parameter_grid = {
-        <span class="hljs-string">'n_estimators'</span>: [<span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">150</span>, <span class="hljs-number">200</span>],
-        <span class="hljs-string">'learning_rate'</span>: [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>],
-        <span class="hljs-string">'max_depth'</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>],
-        <span class="hljs-string">'min_child_weight'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>],
-        <span class="hljs-string">'subsample'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>],
-        <span class="hljs-string">'colsample_bytree'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>]
-    }
-    </code></pre><p>The selected parameters and the details could be found in <a href="18_hyperparameter_optimisation.ipynb">Notebook 18</a>.</p>
-    <h2 id="training">Training</h2>
-    <p>Relevant Notebook: <a href="19a_standard_model_building.ipynb">19a</a>, <a href="19b_strict_model_building.ipynb">19b</a></p>
-    <p>We trained a model which were then separated to standard mode and a strict mode according to their decision border.</p>
+    <span class="hljs-string">'n_estimators'</span>: [<span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">150</span>, <span class="hljs-number">200</span>],
+    <span class="hljs-string">'learning_rate'</span>: [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>],
+    <span class="hljs-string">'max_depth'</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>],
+    <span class="hljs-string">'min_child_weight'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>],
+    <span class="hljs-string">'subsample'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>],
+    <span class="hljs-string">'colsample_bytree'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>]
+}
+</code></pre><p>The best parameters were combinations with <code>learning_rate = 0.1</code>, however after consideration our model has limited
+    training data, a learning rate with 0.1 will have a potential problem of overwriting, after evaluating different
+    combinations with internal validation, we opted to use <code>{&#39;colsample_bytree&#39;: 0.9, &#39;learning_rate&#39;: 0.01, &#39;max_depth&#39;: 7, &#39;min_child_weight&#39;: 1, &#39;n_estimators&#39;: 200, &#39;subsample&#39;: 0.8}</code>,
+    which is the highest combination with <code>learning_rate = 0.01</code>.</p>
+    <h2 id="-a-name-model-training-a-training"><a class="anchor" id="model-training"></a>Training</h2>
+    <p>Relevant Notebook: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/19a_standard_model_building.ipynb">19a</a>, <a href="https://github.com/kennylam8/IntronOrNot/blob/main/19b_strict_model_building.ipynb">19b</a></p>
+    <p>We trained three separate model with the same parameter except for the <code>scale_pos_weight</code>. According to the xgboost
+        documentation, it &quot;control the balance of positive and negative weights, useful for unbalanced classes. A typical value
+        to consider: sum(negative instances) / sum(positive instances)&quot;, after internal cross-validation, we settled on: </p>
     <ul>
-        <li><strong>Standard Mode</strong><ul>
-            <li>Decision border 0.5</li>
+        <li><strong>High-Recall Mode</strong><ul>
+            <li><code>scale_pos_weight = sum(negative instances) / sum(positive instances)</code></li>
         </ul>
         </li>
-        <li><strong>Strict Mode</strong><ul>
-            <li>Decision border scaled to 0.8 (0.8 normalised to 0.5)</li>
+        <li><strong>Standard Mode</strong><ul>
+            <li><code>scale_pos_weight = sum(negative instances) / sum(positive instances) / 2</code></li>
+        </ul>
+        </li>
+        <li><strong>High-Precision Mode</strong><ul>
+            <li><code>scale_pos_weight = sum(negative instances) / sum(positive instances) / 4</code></li>
         </ul>
         </li>
     </ul>
-    <h2 id="evaluation-metrics">Evaluation Metrics</h2>
+    <h2 id="-a-name-model-eval-a-evaluation-metrics"><a class="anchor" id="model-eval"></a>Evaluation Metrics</h2>
     <p>The model&#39;s performance should be evaluated using metrics that consider both classes, metrics such as MCC should be emphasised.
         We will evaluate our model using these metrics:</p>
     <ul>
@@ -491,53 +532,202 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         </li>
         <li>Area Under Receiver Operating Characteristic Curve (AUROC)</li>
     </ul>
-    <h2 id="feature-importance-using-shap-shapley-additive-explanations-">Feature Importance using SHAP (SHapley Additive exPlanations)</h2>
+    <h2 id="-a-name-shap-a-feature-importance-using-shap-shapley-additive-explanations-"><a class="anchor" id="shap"></a>Feature Importance using SHAP (SHapley Additive exPlanations)</h2>
     <p>One of the primary objectives of this project is to gain a deeper understanding of the significance of various features,
         knowledge that could be leveraged to enhance existing filters. Gaining insights into the model&#39;s performance is not merely beneficial but crucial.
         A more interpretable model could substantially contribute to more informed and effective decision-making processes.</p>
-    <p>We sampled 10% of the data (~48k entries) to examien the overall importance of features and how the value of features are affecting the model.</p>
-    <p><img src="gsoc-2023-imgs/standard_model_shap_2.png" alt="">
-        <img src="gsoc-2023-imgs/standard_model_shap_1.png" alt=""></p>
-    <h3 id="prediction-explanation">Prediction Explanation</h3>
-    <p>You can view the explanation for the prediction using <code>--shap true</code> option, it is also defaulted to true in coordinates mode</p>
-    <p><img src="gsoc-2023-imgs/example_waterfall_plot_shap.png" alt=""></p>
-    <h1 id="results">Results</h1>
-    <p>Relevant Notebook: <a href="20a_external_benchmarking.ipynb">20a</a>, <a href="20b_external_benchmarking_gencode.ipynb">20b</a></p>
-    <h2 id="5-fold-stratified-cross-validation">5-Fold Stratified Cross Validation</h2>
+    <p>We sampled 50% of the data (~240k entries) to examine the overall importance of features and how the value of features are affecting the model.\
+        The color reflects the value of the feature, the order of the features (vertically) is the importance of it, and the x-axis reflects
+        the impact on the model (SHAP value).</p>
+    <p><img src="gsoc-2023-imgs/shap_comparison.png" style="height: auto; width: 100%" alt="">
+        <img src="gsoc-2023-imgs/shap_comparison_2.png" style="height: auto; width: 100%" alt="">
+        We can see that recount3 score is the most important feature and from the first plot we can see that the model
+        definitely favours entries with high recount3 score. One interesting finding is that phyloP or the phastCon score
+        is also an important feature, as it was not incorporated in the original filters used by the annotation team, this
+        could also be considered.</p>
+    <h2 id="-a-name-pred-expl-a-prediction-explanation"><a class="anchor" id="pred-expl"></a>Prediction Explanation</h2>
+    <p>You can export and view the explanation for the prediction using <code>--shap true</code> option, it is also defaulted to true in coordinates mode</p>
+    <h3 id="example-plot-">Example plot:</h3>
+    <p><img src="gsoc-2023-imgs/example_waterfall_explanation.png" style="height: auto; width: 100%" alt=""></p>
+    <h1 id="-a-name-results-a-results"><a class="anchor" id="results"></a>Results</h1>
+    <p>Relevant Notebook: <a href="https://github.com/kennylam8/IntronOrNot/blob/main/20a_external_benchmarking.ipynb">20a</a>, <a href="https://github.com/kennylam8/IntronOrNot/blob/main/20b_external_benchmarking_gencode.ipynb">20b</a></p>
+    <h2 id="-a-name-cross-val-a-10-fold-stratified-cross-validation"><a class="anchor" id="cross-val"></a>10-Fold Stratified Cross Validation</h2>
     <p>Standard Deviation (SD) of the folds are presented as the value after ±, only the first s.f. are shown in SD.</p>
-        I was not aware that my columns got misordered in the script, which means the previous result is nowhere near accurate.
-    <br/>
-    <h2 id="external-validation-benchmark">External Validation &amp; Benchmark</h2>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Accuracy</th>
+            <th>B. Accuracy</th>
+            <th>FPR</th>
+            <th>MCC</th>
+            <th>AUROC<sub>score</sub></th>
+            <th>Precision</th>
+            <th>Recall</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ION (High-Recall Mode)</td>
+            <td>0.949</td>
+            <td>0.937</td>
+            <td>0.083</td>
+            <td>0.836</td>
+            <td>0.980</td>
+            <td>0.982</td>
+            <td>0.956</td>
+        </tr>
+        <tr>
+            <td>ION (Standard Mode)</td>
+            <td>0.933</td>
+            <td>0.933</td>
+            <td>0.068</td>
+            <td>0.800</td>
+            <td>0.980</td>
+            <td>0.984</td>
+            <td>0.933</td>
+        </tr>
+        <tr>
+            <td>ION (High-Precision Mode)</td>
+            <td>0.894</td>
+            <td>0.917</td>
+            <td>0.046</td>
+            <td>0.722</td>
+            <td>0.980</td>
+            <td>0.989</td>
+            <td>0.881</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>We can see that adjusting the <code>scale_pos_weight</code> parameter of the model allows us to lower to FPR (while sacrificing the overall predictive performance (indicated by MCC and Recall))</p>
+    <h2 id="-a-name-external-val-a-external-validation-benchmark"><a class="anchor" id="external-val"></a>External Validation &amp; Benchmark</h2>
     <h3 id="manually-annotated-lncrna-test-set">Manually annotated lncRNA test-set</h3>
-
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Acc</th>
+            <th>B. Acc</th>
+            <th>FPR</th>
+            <th>MCC</th>
+            <th>AUROC<sub>score</sub></th>
+            <th>Precision</th>
+            <th>Recall</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ION (High-Recall Mode)</td>
+            <td><strong>0.860</strong></td>
+            <td>0.724</td>
+            <td>0.443</td>
+            <td><strong>0.361</strong></td>
+            <td><strong>0.858</strong></td>
+            <td>0.952</td>
+            <td><strong>0.890</strong></td>
+        </tr>
+        <tr>
+            <td>ION (Standard Mode)</td>
+            <td>0.742</td>
+            <td><strong>0.784</strong></td>
+            <td>0.165</td>
+            <td>0.351</td>
+            <td>0.851</td>
+            <td>0.978</td>
+            <td>0.732</td>
+        </tr>
+        <tr>
+            <td>ION (High-Precision Mode)</td>
+            <td>0.429</td>
+            <td>0.673</td>
+            <td><strong>0.028</strong></td>
+            <td>0.210</td>
+            <td>0.855</td>
+            <td><strong>0.992</strong></td>
+            <td>0.374</td>
+        </tr>
+        <tr>
+            <td>Filters (Intropolis)</td>
+            <td>0.366</td>
+            <td>0.633</td>
+            <td>0.040</td>
+            <td>0.171</td>
+            <td>0.633</td>
+            <td>0.987</td>
+            <td>0.306</td>
+        </tr>
+        <tr>
+            <td>Filters (Recount3)</td>
+            <td>0.701</td>
+            <td>0.654</td>
+            <td>0.403</td>
+            <td>0.191</td>
+            <td>0.654</td>
+            <td>0.946</td>
+            <td>0.711</td>
+        </tr>
+        <tr>
+            <td>SPLAM<sup>1</sup></td>
+            <td>0.483</td>
+            <td>0.674</td>
+            <td>0.091</td>
+            <td>0.205</td>
+            <td>0.831</td>
+            <td>0.674</td>
+            <td>0.674</td>
+        </tr>
+        </tbody>
+    </table>
     <ol>
-        <li>True if both Donor score and Acceptor score &gt;= 0.5 else false</li>
+        <li>True if both Donor score and Acceptor score &gt;= 0.5 else false, actual predicted value is calculated by using the min(donor_score, acceptor_score).</li>
     </ol>
-
     <h3 id="gencode-v46-newly-added-introns">GENCODE v46 Newly Added Introns</h3>
     <p>As only single class is available (accepted/positive), only accuracy is included</p>
-
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Accuracy</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ION (High-Recall mode)</td>
+            <td><strong>0.844</strong></td>
+        </tr>
+        <tr>
+            <td>ION (Standard Mode)</td>
+            <td>0.708</td>
+        </tr>
+        <tr>
+            <td>ION (High-Precision Mode)</td>
+            <td>0.601</td>
+        </tr>
+        <tr>
+            <td>SPLAM<sup>1</sup></td>
+            <td>0.772</td>
+        </tr>
+        </tbody>
+    </table>
     <ol>
         <li>True if both Donor score and Acceptor score &gt;= 0.5 else false</li>
     </ol>
-    <h2 id="summary">Summary</h2>
-    <p>It is important to note that we only have limited negative data to fully benchmark the FPR performance of all models.
-        And the lncRNA dataset is also arguably a relatively hard external test set for the model. Comparing the models,
-        ION (standard mode) has the best balanced accuracy and MCC significantly better than other mode and models, however,
-        it is also suffered from high FPR. It is also notable that SPLAM and the Intropolis-based filter performed quite well in terms
-        of FPR.</p>
-    <h1 id="challenges-future-work">Challenges &amp; Future work</h1>
+    <h2 id="-a-name-test-summary-a-summary"><a class="anchor" id="test-summary"></a>Summary</h2>
+    <p>Comparing the models, all mode of ION performs as good as or better than current filters and as good as SPLAM in most metrics.
+        It is important to note that we only have limited negative data to fully benchmark the FPR performance of all models.
+        And the lncRNA dataset is also arguably a relatively hard external test set for all models. </p>
+    <h1 id="-a-name-challenges-limitation-and-future-work-a-challenges-limitations-and-future-work"><a class="anchor" id="challenges-limitation-and-future-work"></a>Challenges, Limitations, and Future Work</h1>
     <p>There are rumours challenges in this project. Most notably is the imbalance of the training data, as the majority of the data
         are obtained by extracting introns from annotation, this makes the majority of the train-set &quot;positive&quot;. This causes a huge
         problem at the beginning, although we dampen it with the generation of false data, the ration of positive vs negative is still
         around 4:1, a better model could be built with the generation of more false introns, presumably sets accumulated by annotators
         or a more comprehensive simulation of introns using the method utilised in this project.</p>
-    <h1 id="conclusion">Conclusion</h1>
+    <h1 id="-a-name-conclusion-a-conclusion"><a class="anchor" id="conclusion"></a>Conclusion</h1>
     <p>We have successfully developed a model ION that predicts the legitimacy of an intron. The performance of ION is comparable
         to deep learning methods such as SpliceAI and SPLAM, while still being interpretable. This would allow annotators and users
         to use this program to evaluate introns and understand the decision behind it. Many improvements could be make to improve
         this model including generating higher quality &quot;negative&quot; introns and further tuning and experimenting with other features and models.</p>
-    <h1 id="acknowledgements-and-remarks">Acknowledgements and Remarks</h1>
+    <h1 id="-a-name-remarks-a-acknowledgements-and-remarks"><a class="anchor" id="remarks"></a>Acknowledgements and Remarks</h1>
     <p>I am truly grateful for the unwavering support I&#39;ve received throughout the course of this project from the mentors.
         Despite an initial slow start, my mentors have been incredibly supportive, providing invaluable guidance
         through daily communication and during our regular meetings.</p>
@@ -545,6 +735,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         wealth of knowledge and skills I&#39;ve gained through this experience. My primary focus has traditionally been in the realm
         of computational bio/chemistry, which made the opportunity to delve into an unfamiliar domain through this
         project all the more exhilarating for me.</p>
+
 </div>
 
 </body>
