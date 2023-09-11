@@ -290,7 +290,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 
     <h1 id="work-done">Work Done</h1>
     <p>All the work done in this project including all the commits can be found at <a href="https://github.com/kennylam8/IntronOrNot/">https://github.com/kennylam8/IntronOrNot/</a></p>
-    <p>The latest commit as of the submission of the GSoC final evaluation is: <a href="https://github.com/kennylam8/IntronOrNot/">TBC</a></p>
+    <p>The latest commit as of the submission of the GSoC final evaluation is: <a href="https://github.com/kennylam8/IntronOrNot/commit/a6a2151409bf1d8b762d262d6de90f84a5fcebdf">a6a21</a></p>
     <p>We documented the process of testing and building the model using Jupyter-Notebooks, all of the notebook can be found at the root directory of the Github repository</p>
     <p>We documented the process of testing and building the model using Jupyter-Notebooks, all of the notebook can be found at the root directory of the Github repository</p>
     <h1 id="table-of-contents">Table of Contents</h1>
@@ -358,28 +358,27 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     <h3 id="-a-name-package-req-a-package-requirements"><a class="anchor" id="package-req"></a>Package Requirements</h3>
     <p><strong>Please Note that this requirement is for the final ION script in <code>Releases</code>, not the notebooks</strong>\
         <br/>
-        biopython==1.81\
-        matplotlib==3.5.2\
-        numpy==1.25.0\
-        pandarallel==1.6.5\
-        pandas==2.0.3\
-        pyBigWig==0.3.22\
-        pyfaidx==0.7.2.1\
-        scikit_learn==1.1.1\
-        shap==0.41.0\
-        tqdm==4.64.0\
+        biopython==1.81<br/>
+        matplotlib==3.5.2<br/>
+        numpy==1.25.0<br/>
+        pandarallel==1.6.5<br/>
+        pandas==2.0.3<br/>
+        pyBigWig==0.3.22<br/>
+        pyfaidx==0.7.2.1<br/>
+        scikit_learn==1.1.1<br/>
+        shap==0.41.0<br/>
+        tqdm==4.64.0<br/>
         xgboost==1.6.2</p>
     <p><strong>Please Note that this requirement is for the ION script in <code>Releases</code>, not the notebooks</strong>\</p>
     <h2 id="-a-name-usage-a-usage"><a class="anchor" id="usage"></a>Usage</h2>
     <p>Coordinate mode (1-based):</p>
-    <pre><code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --shap true --<span class="hljs-built_in">type</span> coord chr12 <span class="hljs-number">126729967</span> <span class="hljs-number">126732342</span> -
-</code></pre><p>BED mode:</p>
-    <pre><code><span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> high-recall --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed
-<span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> standard --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed
-<span class="hljs-keyword">python3</span> ION.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">mode</span> high-precision --<span class="hljs-built_in">type</span> bed --<span class="hljs-keyword">file</span> ../../benchmarking/annotators_checked_introns.bed
-</code></pre><p>GTF mode:</p>
-    <pre><code><span class="hljs-symbol">To</span> <span class="hljs-keyword">Be </span>Implemented
-</code></pre><p>IMPORTANT: ION can only evaluate intorns with canonical splice-site (GT:AG, GC:AG, AT:AC)</p>
+    <code>python3 ION.py --mode high-precision --type coord chr3 83979030 83990643 +</code>
+
+    <p><br/>BED mode:</p>
+    <code> python3 ION.py --mode high-precision --type bed --file examples/example.bed</code>
+    <p><br/>GTF mode:</p>
+    <code>python3 ION.py --mode high-precision --type gtf --file examples/example.gtf</code>
+    <p><br/>IMPORTANT: ION can only evaluate intorns with canonical splice-site (GT:AG, GC:AG, AT:AC)</p>
     <h1 id="-a-name-background-a-background"><a class="anchor" id="background"></a>Background</h1>
     <p>Understanding the impact of genetic variation on disease requires comprehensive gene annotation.
         Human genes are well characterised following more than two decades of work on their annotation, however,
