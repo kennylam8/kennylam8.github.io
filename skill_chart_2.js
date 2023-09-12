@@ -97,10 +97,10 @@
                             return (idx / total) * 1000;
                         }
                     },data: [{value: 100, symbol: symbol || pathSymbols.visualisation, tt_name:"Visualisation", tt_pj:"20", tt_yoe:"5", tt_ct:"12"}, // Visualisation
-                        {value: 90, symbol: symbol || pathSymbols.communication, tt_name:"Communication", tt_pj:"4", tt_yoe:"2", tt_ct:"3"}, // Communication
+                        {value: 90, symbol: symbol || pathSymbols.communication, tt_name:"Science / General Communication", tt_pj:"4", tt_yoe:"2", tt_ct:"3"}, // Communication
+                        {value: 80, symbol: symbol || pathSymbols.binf, tt_name:"Bioinformatics", tt_pj:"4", tt_yoe:"3", tt_ct:"4"}, // Bioinformatics
                         {value: 80, symbol: symbol || pathSymbols.statAnalysis, tt_name:"Statistical Analysis", tt_pj:"3", tt_yoe:"2", tt_ct:"3"}, // Statistical Analysis
-                        {value: 70, symbol: symbol || pathSymbols.torch, tt_name:"PyTorch", tt_pj:"6", tt_yoe:"2", tt_ct:"3"}, // PyTorch
-                        {value: 70, symbol: symbol || pathSymbols.binf, tt_name:"Bioinformatics", tt_pj:"4", tt_yoe:"3", tt_ct:"4"}, // Bioinformatics
+                        {value: 80, symbol: symbol || pathSymbols.torch, tt_name:"PyTorch", tt_pj:"6", tt_yoe:"2", tt_ct:"3"}, // PyTorch
                         // {value: 60, symbol: symbol || pathSymbols.python, tt_name:"Haskell", tt_pj:"3", tt_yoe:"1", tt_ct:"1"}, //
                     // {value: 60, symbol: symbol || pathSymbols.python, tt_name:"Haskell", tt_pj:"3", tt_yoe:"1", tt_ct:"1"},
                     ] // Haskell
