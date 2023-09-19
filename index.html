@@ -312,11 +312,11 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 </style>
 
 <body onload="return myScript()" onhashchange="loadHashAnimation()">
-    <div id="loading">
-        <div id="loading-bar" class="align-content-center justify-content-center">
-            <div class="align-content-center justify-content-center" id="loading-spinner"></div>
-        </div>
-    </div>
+<!--    <div id="loading">-->
+<!--        <div id="loading-bar" class="align-content-center justify-content-center">-->
+<!--            <div class="align-content-center justify-content-center" id="loading-spinner"></div>-->
+<!--        </div>-->
+<!--    </div>-->
     <nav class="navbar bg-dark navbar-expand-sm bg-body-tertiary sticky-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -342,6 +342,9 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#experience_all">Experience</a>
@@ -418,14 +421,46 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                 </div>
 
 
-                <div class="text-center">
-                    <a href="#skills"><i class="fa-solid fa-angles-down" style="text-align: center;"></i></a>
-                </div><br/><br/><br/><br/>
+<!--                <div class="text-center">-->
+<!--                    <a href="#skills"><i class="fa-solid fa-angles-down" style="text-align: center;"></i></a>-->
+<!--                </div><br/><br/><br/><br/>-->
             </div>
 
         </div>
     </div>
     </div>
+
+    <!-- skills -->
+    <div id="skills" class="container-fluid bg-dark" style="min-height: 100vh; width: 100%">
+    <div class="b-example-divider"></div>
+
+    <div class="section text-left container" style="padding: 0; margin-top:2%">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="display-5 fw-bold" style="color: white">Skills</h1>
+                <br/>
+                <p class="text-white">I have 5+ years of experience in coding, which includes using data analysis and machine learning libraries to
+                    investigate issues, build data engineering pipeline, perform feature engineering, develop predictive models, and extract insights from data.
+
+                    On top of that, I also have experience in software development and database.
+
+                </p>
+                <p class="lead" style="color: white">Programming Languages</p>
+                <div id="mainchart" class="section" style="width: 90%;height:250px;"></div>
+                <hr/><p class="lead" style="color: white">Data Science skills, Frameworks, and other skills</p>
+                <div id="mainchart2" class="section" style="width: 90%;height:250px;"></div>
+                <br/>
+
+<!--                <div class="row" style="padding-bottom: 5%">-->
+
+<!--                    <div class="text-center justify-content-center">-->
+<!--                        <a href="#experience"><i class="fa-solid fa-angles-down" style="color: white;text-align: center;"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Experiences -->
     <div id="experience_all" class="b-example-divider" style="--bs-gutter-x: 0 rem;"></div>
@@ -466,7 +501,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     <div class="container-fluid" style="min-height: 100vh">
         <div class="container flex-grow-1 section" style="padding-top:3%">
             <h1 class="display-5 py-3 fw-bold">Projects</h1>
-            <p class="mb-4">Include projects where I am a Major or Secondary contributor</p>
+            <p class="mb-4">This section only include big projects where I am the main or secondary contributor</p>
             </br>
             <p>
                 <b>ION: Differentiating Real and Misaligned Introns with Machine Learning  </b> <a target="_blank" href="projects/gsoc-2023/index.html" class="btn btn-sm btn-warning" role="button">View Details</a><br/>
@@ -492,37 +527,7 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
         </div>
     </div>
 
-    <!-- skills -->
-    <div id="skills" class="container-fluid bg-dark" style="min-height: 100vh; width: 100%">
-        <div class="b-example-divider"></div>
 
-        <div class="section text-left container" style="padding: 0; margin-top:2%">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1 class="display-5 fw-bold" style="color: white">Skills (Hover to see details)</h1>
-                    <br/>
-                    <p class="text-white">I have 5+ years of experience in Python, which includes using data analysis and machine learning libraries to
-                        investigate issues, build data engineering pipeline, perform feature engineering, develop predictive models, and extract insights from data.
-
-                        On top of that, I also have experience in software development and database.
-
-                    </p>
-                    <p class="lead" style="color: white">Programming Languages</p>
-                    <div id="mainchart" class="section" style="width: 90%;height:250px;"></div>
-                    <hr/><p class="lead" style="color: white">Data Science skills, Frameworks, and other skills</p>
-                    <div id="mainchart2" class="section" style="width: 90%;height:250px;"></div>
-                    <br/>
-
-                    <div class="row" style="padding-bottom: 5%">
-
-                        <div class="text-center justify-content-center">
-                            <a href="#experience"><i class="fa-solid fa-angles-down" style="color: white;text-align: center;"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- // Contact Page  //-->
     <div id="contact" class="container-fluid bg-light" style="min-height: 120vh; text-align: center;">
@@ -581,9 +586,9 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
                     axisPointer: {
                         type: 'shadow'
                     },
-                    formatter: function(params) {
-                        return  `<p class="lead">${params.data.tt_name}</p>${params.data.tt_pj} related projects<br/>${params.data.tt_yoe} years of experience<br/>${params.data.tt_ct} related courses taken`;
-                    }
+                    // formatter: function(params) {
+                    //     return  `<p class="lead">${params.data.tt_name}</p>${params.data.tt_pj} related projects<br/>${params.data.tt_yoe} years of experience<br/>${params.data.tt_ct} related courses taken`;
+                    // }
                 },
                 grid: {
                     containLabel: true,
@@ -710,16 +715,16 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
     </script>
     <script>
 
-        window.addEventListener('load', function() {
-            var loadingSpinner = document.getElementById('loading-spinner');
-            var loadingContainer = document.getElementById('loading');
-            var contentContainer = document.getElementById('home');
-
-            setTimeout(function() {
-                loadingContainer.style.display = 'none';
-                contentContainer.style.display = 'block';
-            }, 2000);
-        });
+        // window.addEventListener('load', function() {
+        //     var loadingSpinner = document.getElementById('loading-spinner');
+        //     var loadingContainer = document.getElementById('loading');
+        //     var contentContainer = document.getElementById('home');
+        //
+        //     setTimeout(function() {
+        //         loadingContainer.style.display = 'none';
+        //         contentContainer.style.display = 'block';
+        //     }, 2000);
+        // });
 
         function myScript() {
             // myFunction();
