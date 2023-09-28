@@ -224,8 +224,9 @@ https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js
 
     <br/>
     <h1 id="google-summer-of-code-2023-br-differentiating-real-and-misaligned-introns-with-machine-learning">Google Summer of Code 2023: <br/> Differentiating Real and Misaligned Introns with Machine Learning</h1>
-    <p><img src="https://img.shields.io/badge/licence-MIT-blue" alt="Static Badge">
-        <img src="https://img.shields.io/badge/Python-3.10-orange" alt="Static Badge"></p>
+    <p><img src="https://img.shields.io/badge/Licence-MIT-blue" alt="Static Badge">
+        <img src="https://img.shields.io/badge/Python-3.10-orange" alt="Static Badge">
+        <a href="https://github.com/EnsemblGSOC/IntronOrNot/releases/tag/v0.1.0-alpha"><img src="https://img.shields.io/badge/Release-0.0.1--alpha-red" alt="Static Badge"></a></p>
     <p>To address issue that strict filters rejects most of the legitimate introns,
         we developed IntronOrNot (ION) - a machine learning to differentiate that predicts
         if the intron is real or misaligned. The model accepts coordinates, .bed, and .gtf file as input.
@@ -500,7 +501,7 @@ dependencies:
     <span class="hljs-string">'colsample_bytree'</span>: [<span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span>]
 }
 </code></pre><p>The best parameters were combinations with <code>learning_rate = 0.1</code>, however after consideration our model has limited
-    training data, a learning rate with 0.1 will have a potential problem of overwriting, after evaluating different
+    training data, a learning rate with 0.1 will have a potential problem of overfitting, after evaluating different
     combinations with internal validation, we opted to use <code>{&#39;colsample_bytree&#39;: 0.9, &#39;learning_rate&#39;: 0.01, &#39;max_depth&#39;: 7, &#39;min_child_weight&#39;: 1, &#39;n_estimators&#39;: 200, &#39;subsample&#39;: 0.8}</code>,
     which is the highest combination with <code>learning_rate = 0.01</code>.</p>
     <h2 id="-a-name-model-training-a-training"><a target="blank" class="anchor" id="model-training"></a>Training</h2>
