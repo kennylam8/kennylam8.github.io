@@ -162,7 +162,7 @@
 
         optionIndex2 = (optionIndex2 + 1) % options2.length;
         myChart2.setOption(options2[optionIndex2]);
-    }, 10000);
+    }, 6000);
 
     // Display the chart using the configuration items and data just specified.
     myChart.setOption(option);
