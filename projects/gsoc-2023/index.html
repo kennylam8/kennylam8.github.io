@@ -562,162 +562,168 @@ dependencies:
     <p>Relevant Notebook: <a target="blank" href="https://github.com/kennylam8/IntronOrNot/blob/main/20a_external_benchmarking.ipynb">20a</a>, <a target="blank" href="https://github.com/kennylam8/IntronOrNot/blob/main/20b_external_benchmarking_gencode.ipynb">20b</a></p>
     <h2 id="-a-name-cross-val-a-10-fold-stratified-cross-validation"><a target="blank" class="anchor" id="cross-val"></a>10-Fold Stratified Cross Validation</h2>
     <p>Standard Deviation (SD) of the folds are presented as the value after ±, only the first s.f. are shown in SD.</p>
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th>Accuracy</th>
-            <th>B. Accuracy</th>
-            <th>FPR</th>
-            <th>MCC</th>
-            <th>AUROC<sub>score</sub></th>
-            <th>Precision</th>
-            <th>Recall</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>ION (High-Recall Mode)</td>
-            <td>0.949</td>
-            <td>0.937</td>
-            <td>0.083</td>
-            <td>0.836</td>
-            <td>0.980</td>
-            <td>0.982</td>
-            <td>0.956</td>
-        </tr>
-        <tr>
-            <td>ION (Standard Mode)</td>
-            <td>0.933</td>
-            <td>0.933</td>
-            <td>0.068</td>
-            <td>0.800</td>
-            <td>0.980</td>
-            <td>0.984</td>
-            <td>0.933</td>
-        </tr>
-        <tr>
-            <td>ION (High-Precision Mode)</td>
-            <td>0.894</td>
-            <td>0.917</td>
-            <td>0.046</td>
-            <td>0.722</td>
-            <td>0.980</td>
-            <td>0.989</td>
-            <td>0.881</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-responsive-sm">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Accuracy</th>
+                <th>B. Accuracy</th>
+                <th>FPR</th>
+                <th>MCC</th>
+                <th>AUROC<sub>score</sub></th>
+                <th>Precision</th>
+                <th>Recall</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ION (High-Recall Mode)</td>
+                <td>0.949</td>
+                <td>0.937</td>
+                <td>0.083</td>
+                <td>0.836</td>
+                <td>0.980</td>
+                <td>0.982</td>
+                <td>0.956</td>
+            </tr>
+            <tr>
+                <td>ION (Standard Mode)</td>
+                <td>0.933</td>
+                <td>0.933</td>
+                <td>0.068</td>
+                <td>0.800</td>
+                <td>0.980</td>
+                <td>0.984</td>
+                <td>0.933</td>
+            </tr>
+            <tr>
+                <td>ION (High-Precision Mode)</td>
+                <td>0.894</td>
+                <td>0.917</td>
+                <td>0.046</td>
+                <td>0.722</td>
+                <td>0.980</td>
+                <td>0.989</td>
+                <td>0.881</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <p>We can see that adjusting the <code>scale_pos_weight</code> parameter of the model allows us to lower to FPR (while sacrificing the overall predictive performance (indicated by MCC and Recall))</p>
     <h2 id="-a-name-external-val-a-external-validation-benchmark"><a target="blank" class="anchor" id="external-val"></a>External Validation &amp; Benchmark</h2>
     <h3 id="manually-annotated-lncrna-test-set">Manually annotated lncRNA test-set</h3>
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th>Acc</th>
-            <th>B. Acc</th>
-            <th>FPR</th>
-            <th>MCC</th>
-            <th>AUROC<sub>score</sub></th>
-            <th>Precision</th>
-            <th>Recall</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>ION (High-Recall Mode)</td>
-            <td><strong>0.860</strong></td>
-            <td>0.724</td>
-            <td>0.443</td>
-            <td><strong>0.361</strong></td>
-            <td><strong>0.858</strong></td>
-            <td>0.952</td>
-            <td><strong>0.890</strong></td>
-        </tr>
-        <tr>
-            <td>ION (Standard Mode)</td>
-            <td>0.742</td>
-            <td><strong>0.784</strong></td>
-            <td>0.165</td>
-            <td>0.351</td>
-            <td>0.851</td>
-            <td>0.978</td>
-            <td>0.732</td>
-        </tr>
-        <tr>
-            <td>ION (High-Precision Mode)</td>
-            <td>0.429</td>
-            <td>0.673</td>
-            <td><strong>0.028</strong></td>
-            <td>0.210</td>
-            <td>0.855</td>
-            <td><strong>0.992</strong></td>
-            <td>0.374</td>
-        </tr>
-        <tr>
-            <td>Filters (Intropolis)</td>
-            <td>0.366</td>
-            <td>0.633</td>
-            <td>0.040</td>
-            <td>0.171</td>
-            <td>0.633</td>
-            <td>0.987</td>
-            <td>0.306</td>
-        </tr>
-        <tr>
-            <td>Filters (Recount3)</td>
-            <td>0.701</td>
-            <td>0.654</td>
-            <td>0.403</td>
-            <td>0.191</td>
-            <td>0.654</td>
-            <td>0.946</td>
-            <td>0.711</td>
-        </tr>
-        <tr>
-            <td>SPLAM<sup>1</sup></td>
-            <td>0.483</td>
-            <td>0.674</td>
-            <td>0.091</td>
-            <td>0.205</td>
-            <td>0.831</td>
-            <td>0.674</td>
-            <td>0.674</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Acc</th>
+                <th>B. Acc</th>
+                <th>FPR</th>
+                <th>MCC</th>
+                <th>AUROC<sub>score</sub></th>
+                <th>Precision</th>
+                <th>Recall</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ION (High-Recall Mode)</td>
+                <td><strong>0.860</strong></td>
+                <td>0.724</td>
+                <td>0.443</td>
+                <td><strong>0.361</strong></td>
+                <td><strong>0.858</strong></td>
+                <td>0.952</td>
+                <td><strong>0.890</strong></td>
+            </tr>
+            <tr>
+                <td>ION (Standard Mode)</td>
+                <td>0.742</td>
+                <td><strong>0.784</strong></td>
+                <td>0.165</td>
+                <td>0.351</td>
+                <td>0.851</td>
+                <td>0.978</td>
+                <td>0.732</td>
+            </tr>
+            <tr>
+                <td>ION (High-Precision Mode)</td>
+                <td>0.429</td>
+                <td>0.673</td>
+                <td><strong>0.028</strong></td>
+                <td>0.210</td>
+                <td>0.855</td>
+                <td><strong>0.992</strong></td>
+                <td>0.374</td>
+            </tr>
+            <tr>
+                <td>Filters (Intropolis)</td>
+                <td>0.366</td>
+                <td>0.633</td>
+                <td>0.040</td>
+                <td>0.171</td>
+                <td>0.633</td>
+                <td>0.987</td>
+                <td>0.306</td>
+            </tr>
+            <tr>
+                <td>Filters (Recount3)</td>
+                <td>0.701</td>
+                <td>0.654</td>
+                <td>0.403</td>
+                <td>0.191</td>
+                <td>0.654</td>
+                <td>0.946</td>
+                <td>0.711</td>
+            </tr>
+            <tr>
+                <td>SPLAM<sup>1</sup></td>
+                <td>0.483</td>
+                <td>0.674</td>
+                <td>0.091</td>
+                <td>0.205</td>
+                <td>0.831</td>
+                <td>0.674</td>
+                <td>0.674</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <ol>
         <li>True if both Donor score and Acceptor score &gt;= 0.5 else false, actual predicted value is calculated by using the min(donor_score, acceptor_score).</li>
     </ol>
     <h3 id="gencode-v46-newly-added-introns">GENCODE v46 Newly Added Introns</h3>
     <p>As only single class is available (accepted/positive), only accuracy is included</p>
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th>Accuracy</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>ION (High-Recall mode)</td>
-            <td><strong>0.844</strong></td>
-        </tr>
-        <tr>
-            <td>ION (Standard Mode)</td>
-            <td>0.708</td>
-        </tr>
-        <tr>
-            <td>ION (High-Precision Mode)</td>
-            <td>0.601</td>
-        </tr>
-        <tr>
-            <td>SPLAM<sup>1</sup></td>
-            <td>0.772</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Accuracy</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ION (High-Recall mode)</td>
+                <td><strong>0.844</strong></td>
+            </tr>
+            <tr>
+                <td>ION (Standard Mode)</td>
+                <td>0.708</td>
+            </tr>
+            <tr>
+                <td>ION (High-Precision Mode)</td>
+                <td>0.601</td>
+            </tr>
+            <tr>
+                <td>SPLAM<sup>1</sup></td>
+                <td>0.772</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <ol>
         <li>True if both Donor score and Acceptor score &gt;= 0.5 else false</li>
     </ol>
